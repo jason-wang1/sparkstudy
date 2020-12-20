@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="de88a719-1b0a-4b08-9a68-1cd2b78e596f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/ml/featureeng/Item2Vec.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/dataframe/friend2.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/dataframe/friend2.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No01.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No01.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No03.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No03.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/dataframe/wc.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/dataframe/wc.scala" afterDir="false" />
-    </list>
+    <list default="true" id="de88a719-1b0a-4b08-9a68-1cd2b78e596f" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/wc.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+            <state relative-caret-position="153">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="e#23#42#0" expanded="true" />
               </folding>
@@ -299,127 +292,6 @@
               <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="dataframe" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="dataframe" type="462c0819:PsiDirectoryNode" />
-              <item name="sqlpractice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="dataframe" type="462c0819:PsiDirectoryNode" />
-              <item name="sqlpractice2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-              <item name="featureeng" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-              <item name="recommend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="day09" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -431,7 +303,7 @@
     <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1608456828340" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1608457158898" />
     <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -761,12 +633,12 @@
       <workItem from="1606288864640" duration="5356000" />
       <workItem from="1606544442039" duration="197000" />
       <workItem from="1606735982199" duration="10000" />
-      <workItem from="1608450708267" duration="5953000" />
+      <workItem from="1608450708267" duration="6363000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1156965000" />
+    <option name="totallyTimeSpent" value="1157375000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -779,14 +651,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.10211267" visible="true" weight="0.25775978" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.10211267" visible="true" weight="0.25775978" />
       <window_info id="Structure" order="6" sideWeight="0.89788735" side_tool="true" weight="0.24561404" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.45411605" side_tool="true" weight="0.23941606" />
@@ -794,14 +665,14 @@
       <window_info anchor="bottom" id="Java Enterprise" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.4919708" />
-      <window_info anchor="bottom" id="Terminal" order="6" weight="0.11532847" />
+      <window_info anchor="bottom" id="Terminal" order="6" visible="true" weight="0.29781023" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.32666665" />
       <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.72267205" weight="0.38686132" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" weight="0.10072993" />
-      <window_info active="true" anchor="bottom" id="Run" order="13" sideWeight="0.54588395" visible="true" weight="0.32846716" />
+      <window_info anchor="bottom" id="Run" order="13" sideWeight="0.54588395" weight="0.37956205" />
       <window_info anchor="bottom" id="Dependency Viewer" order="14" />
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -1221,8 +1092,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/wc.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        <state relative-caret-position="153">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="e#23#42#0" expanded="true" />
           </folding>
