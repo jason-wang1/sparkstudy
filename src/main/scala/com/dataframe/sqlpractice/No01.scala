@@ -30,39 +30,36 @@ object No01 {
       ("1003", "02", 70),
       ("1003", "04", 70),
       ("1003", "03", 85)
-    ).toDF("uid", "subject_id", "score")
-
-    df.repartition(col("subject_id"))
-      .coalesce(1).write.csv("D:\\temp\\df.txt")
+    ).toDF("uid", "subjectId", "score")
 
     // 找出所有科目成绩都大于某一学科平均乘积的学生
-    val w: WindowSpec = Window.partitionBy($"subject_id")
+    val w: WindowSpec = Window.partitionBy($"subjectId")
     df
-      .select($"uid", $"subject_id", $"score", avg($"score").over(w).alias("avg_score"))
-      .where($"score" > $"avg_score")
+      .withColumn("avgScore", avg($"score").over(w))
+      .where($"score" > $"avgScore")
       .groupBy($"uid").agg(count($"uid").alias("count"))
       .where($"count" === 3)
       .show()
 
-
-    df.createOrReplaceTempView("student")
-    spark
-      .sql("select uid, subject_id from student where score > 85")
-      .explain(true)
-
-    df.createOrReplaceTempView("t")
-    spark.sql(
-      """
-        |select uid
-        |from(
-        | select uid,
-        | case when score > avg_score then 1 else 0 end flag
-        | from(
-        |  select uid, score, avg(score) over(partition by subject_id) avg_score
-        |  from t))
-        |group by uid
-        |having sum(flag) = 3
-      """.stripMargin).show()
+//
+//    df.createOrReplaceTempView("student")
+//    spark
+//      .sql("select uid, subjectId from student where score > 85")
+//      .explain(true)
+//
+//    df.createOrReplaceTempView("t")
+//    spark.sql(
+//      """
+//        |select uid
+//        |from(
+//        | select uid,
+//        | case when score > avgScore then 1 else 0 end flag
+//        | from(
+//        |  select uid, score, avg(score) over(partition by subjectId) avgScore
+//        |  from t))
+//        |group by uid
+//        |having sum(flag) = 3
+//      """.stripMargin).show()
 
   }
 }
