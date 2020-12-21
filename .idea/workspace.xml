@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="de88a719-1b0a-4b08-9a68-1cd2b78e596f" name="Default Changelist" comment="" />
+    <list default="true" id="de88a719-1b0a-4b08-9a68-1cd2b78e596f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/ml/recommend/JaccardSim.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dataframe/wc$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dataframe/wc$.class" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,89 +33,98 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/Dataset.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="1893" column="6" selection-start-line="1893" selection-start-column="6" selection-end-line="1893" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No08.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/friend2.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="947">
-              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-              <folding>
-                <element signature="e#23#39#0" expanded="true" />
-                <element signature="e#942#981#0" expanded="true" />
-                <element signature="e#906#945#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="608">
+              <caret line="1389" column="16" selection-start-line="1389" selection-start-column="16" selection-end-line="1389" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/wc.scala">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/ml/recommend/JaccardSim.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="261">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
               <folding>
-                <element signature="e#23#42#0" expanded="true" />
+                <element signature="e#27#60#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/data/test.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/Column.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="835" column="6" selection-start-line="835" selection-start-column="6" selection-end-line="835" selection-end-column="6" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No04.scala">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/functions.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="287" column="6" selection-start-line="287" selection-start-column="6" selection-end-line="287" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/scala-2.11.8/scala-2.11.8/src/library/scala/collection/GenSetLike.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="60" column="6" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/ml/recommend/ItemCF1.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="27">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+              <folding>
+                <element signature="e#26#59#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No05.scala">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/ml/recommend/ItemCF2.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="134">
+              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+              <folding>
+                <element signature="e#26#59#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No01.scala">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/DataType.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="130">
+              <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/data/wordcount">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/StructType.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="97" column="11" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No10.scala">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="95">
+              <caret line="169" selection-start-line="169" selection-end-line="169" />
             </state>
           </provider>
         </entry>
@@ -130,7 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>queryExecution</find>
       <find>LogicalPlan</find>
       <find>ofRows</find>
       <find>ofRows(self, sessionState.sqlParser.parsePlan(sqlText))</find>
@@ -160,6 +172,7 @@
       <find>shop</find>
       <find>avg_score</find>
       <find>subject_id</find>
+      <find>stru</find>
     </findStrings>
     <replaceStrings>
       <replace>Double</replace>
@@ -189,9 +202,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/com/ml/charpter4/homework.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/qf/day07/RDDTest.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlDemo.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/no1.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No1.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No2.scala" />
@@ -240,6 +250,9 @@
         <option value="$PROJECT_DIR$/src/main/scala/com/dataframe/friend2.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No01.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/dataframe/wc.scala" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/ml/recommend/JaccardSim.scala" />
       </list>
     </option>
   </component>
@@ -292,6 +305,65 @@
               <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dataframe" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dataframe" type="462c0819:PsiDirectoryNode" />
+              <item name="sqlpractice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkstudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkstudy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+              <item name="recommend" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -303,7 +375,7 @@
     <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1608457158898" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1608471546089" />
     <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -315,10 +387,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\resources" />
-      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\resources_copy" />
-      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\target" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy" />
+      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\data" />
+      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\com\machinelearning\charpter12" />
+      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\com\ml\charpter7" />
+      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\com\machinelearning\charpter04\data" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.sparkstudy.day07" />
@@ -326,12 +400,10 @@
       <recent name="com.release" />
       <recent name="com.sparkstudy.day17" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\data" />
-      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\com\machinelearning\charpter12" />
-      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\com\ml\charpter7" />
-      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\com\machinelearning\charpter04\data" />
-      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\scala\com\machinelearning\charpter04" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\resources" />
+      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\src\main\resources_copy" />
+      <recent name="C:\Users\BoWANG\IdeaProjects\sparkstudy\target" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -346,13 +418,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.wc">
-    <configuration name="No01" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.dataframe.sqlpractice.No01" />
+  <component name="RunManager" selected="Application.JaccardSim">
+    <configuration name="JaccardSim" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.ml.recommend.JaccardSim" />
       <module name="sparkstudy" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dataframe.sqlpractice.*" />
+          <option name="PATTERN" value="com.ml.recommend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -360,8 +432,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="No02" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.dataframe.sqlpractice.No02" />
+    <configuration name="No01" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.dataframe.sqlpractice.No01" />
       <module name="sparkstudy" />
       <extension name="coverage">
         <pattern>
@@ -413,19 +485,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.No02" />
       <item itemvalue="Application.No03" />
       <item itemvalue="Application.friend2" />
       <item itemvalue="Application.wc" />
       <item itemvalue="Application.No01" />
+      <item itemvalue="Application.JaccardSim" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JaccardSim" />
         <item itemvalue="Application.wc" />
         <item itemvalue="Application.No01" />
         <item itemvalue="Application.friend2" />
         <item itemvalue="Application.No03" />
-        <item itemvalue="Application.No02" />
       </list>
     </recent_temporary>
   </component>
@@ -633,12 +705,13 @@
       <workItem from="1606288864640" duration="5356000" />
       <workItem from="1606544442039" duration="197000" />
       <workItem from="1606735982199" duration="10000" />
-      <workItem from="1608450708267" duration="6363000" />
+      <workItem from="1608450708267" duration="6554000" />
+      <workItem from="1608460263613" duration="6235000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1157375000" />
+    <option name="totallyTimeSpent" value="1163801000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -657,22 +730,22 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.10211267" visible="true" weight="0.25775978" />
-      <window_info id="Structure" order="6" sideWeight="0.89788735" side_tool="true" weight="0.24561404" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.12971698" visible="true" weight="0.21794872" />
+      <window_info id="Structure" order="6" sideWeight="0.870283" side_tool="true" weight="0.21794872" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.45411605" side_tool="true" weight="0.23941606" />
       <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.4979757" weight="0.38540146" />
       <window_info anchor="bottom" id="Java Enterprise" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.4919708" />
-      <window_info anchor="bottom" id="Terminal" order="6" visible="true" weight="0.29781023" />
+      <window_info anchor="bottom" id="Terminal" order="6" weight="0.14306569" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.32666665" />
       <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.72267205" weight="0.38686132" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" weight="0.10072993" />
-      <window_info anchor="bottom" id="Run" order="13" sideWeight="0.54588395" weight="0.37956205" />
+      <window_info anchor="bottom" id="Run" order="13" sideWeight="0.54588395" weight="0.36350363" />
       <window_info anchor="bottom" id="Dependency Viewer" order="14" />
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -758,69 +831,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/scala-2.11.8/scala-2.11.8/src/library/scala/collection/TraversableOnce.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2673">
-          <caret line="109" selection-start-line="109" selection-end-line="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.2.0/spark-core_2.11-2.2.0-sources.jar!/org/apache/spark/rdd/PairRDDFunctions.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="203" column="40" selection-start-line="203" selection-start-column="40" selection-end-line="203" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/StructField.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/BooleanType.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/expressions/UserDefinedFunction.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/StringType.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/DataType.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/StructType.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="97" column="21" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/ArrayType.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="75" column="19" lean-forward="true" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/quickscala/charpter02.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-281">
@@ -892,13 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/functions.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31509">
-          <caret line="1199" column="6" selection-start-line="1199" selection-start-column="6" selection-end-line="1199" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/sparkstudy/weektest2/Test1.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
@@ -906,13 +909,6 @@
           <folding>
             <element signature="e#34#53#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/Column.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="302" selection-start-line="302" selection-end-line="302" />
         </state>
       </provider>
     </entry>
@@ -930,30 +926,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ml/recommend/ItemCF2.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="e#26#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-mllib_2.11/2.2.0/spark-mllib_2.11-2.2.0-sources.jar!/org/apache/spark/mllib/feature/Word2Vec.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7290">
           <caret line="306" column="37" selection-start-line="306" selection-start-column="37" selection-end-line="306" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ml/recommend/ItemCF1.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="18" selection-start-line="18" selection-end-line="98" selection-end-column="3" />
-          <folding>
-            <element signature="e#26#59#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -981,24 +957,6 @@
           <folding>
             <element signature="e#26#59#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No02.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No03.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="50" column="81" lean-forward="true" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="81" />
-          <caret line="51" column="6" lean-forward="true" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="6" />
-          <caret line="52" column="73" lean-forward="true" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="73" />
-          <caret line="53" column="47" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="47" />
-          <caret line="54" column="23" lean-forward="true" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1056,46 +1014,156 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No04.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No05.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/Dataset.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="1893" column="6" selection-start-line="1893" selection-start-column="6" selection-end-line="1893" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No01.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/data/wordcount">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/data/test.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/dependency-reduced-pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No04.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No05.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/wc.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="369">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="e#23#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No01.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1053">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No02.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/dataframe/sqlpractice/No03.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-579">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/scala-2.11.8/scala-2.11.8/src/library/scala/Array.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-715">
+          <caret line="473" column="17" selection-start-line="473" selection-start-column="17" selection-end-line="473" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="169" selection-start-line="169" selection-end-line="169" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/scala-2.11.8/scala-2.11.8/src/library/scala/collection/SetLike.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1829">
+          <caret line="162" column="6" selection-start-line="162" selection-start-column="6" selection-end-line="162" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/scala-2.11.8/scala-2.11.8/src/library/scala/collection/GenSetLike.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="60" column="6" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/Dataset.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="1389" column="16" selection-start-line="1389" selection-start-column="16" selection-end-line="1389" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/DataType.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/StructType.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="97" column="11" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ml/recommend/ItemCF1.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+          <folding>
+            <element signature="e#26#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/Column.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="835" column="6" selection-start-line="835" selection-start-column="6" selection-end-line="835" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.2.0/spark-sql_2.11-2.2.0-sources.jar!/org/apache/spark/sql/functions.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="287" column="6" selection-start-line="287" selection-start-column="6" selection-end-line="287" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ml/recommend/ItemCF2.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+          <folding>
+            <element signature="e#26#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ml/recommend/JaccardSim.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#27#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
