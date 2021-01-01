@@ -28,12 +28,12 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
  * @version 1.0
  */
 object DocumentClassification {
-  val saveModelPath: String = this.getClass.getResource("/model/docclass_word2vec_rf").getPath
+  val saveModelPath: String = "/Users/wangbo/IdeaProjects/sparkstudy/src/main/resources/model.docclass_word2vec_rf"
 
   def main(args: Array[String]): Unit = {
     // 第一次训练设置为true，它会训练模型并保存模型
     // 之后设置为false，它会从之前保存的地方加载模型进行预测、评估等
-    val init = false
+    val init = true
 
     val sparkConf: SparkConf = new SparkConf().setAppName("DocumentClassification").setMaster("local[*]")
     val spark: SparkSession = SparkSession.builder().config(sparkConf).getOrCreate()
