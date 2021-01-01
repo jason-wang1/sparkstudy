@@ -14,26 +14,33 @@ import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
 case class LabelWords(label: Integer, words: Array[String])
 
 /**
-  * Descreption:
-  * 采用ML Pipelines构建一个文档分类器，需要将模型进行保存，并且加载模型后对测试样本进行预测，考查点：
-  * 1）	spark读取文件
-  * 2）	数据清洗，考查Datasets的基本操作
-  * 3）	构建分类器的管道，考查构建各种转换操作
-  * 4）	读取模型，读取测试数据，并且进行模型测试
-  *
-  * Date: 2020年05月13日
-  *
-  * @author WangBo
-  * @version 1.0
-  */
+ * Descreption:
+ * 采用ML Pipelines构建一个文档分类器，需要将模型进行保存，并且加载模型后对测试样本进行预测，考查点：
+ * 1）	spark读取文件
+ * 2）	数据清洗，Spark Sql的基本操作
+ * 3）	构建分类器的管道，考查构建各种转换操作
+ * 4）	读取模型，读取测试数据，并且进行模型测试
+ *
+ * 数据集描述：
+ * myapp_id：文档id
+ * typenameid：文档类别id，即需要预测的标签
+ * typename：文档类别
+ * myapp_word：部分文档内容
+ * myapp_word_all：全部文档内容，即用于训练的特征
+ *
+ * Date: 2020年05月13日
+ *
+ * @author WangBo
+ * @version 1.0
+ */
 object homeworkTransformers {
   def main(args: Array[String]): Unit = {
     val sparkConf: SparkConf = new SparkConf().setAppName("homeworkTransformers").setMaster("local[*]")
     val spark: SparkSession = SparkSession.builder().config(sparkConf).getOrCreate()
     import spark.implicits._
 
-    // 1.读取训练数据，清洗数据
-    val url = this.getClass.getResource("data/doc_class.dat")
+    // 1.读取训练数据，清洗数据，转换为 DataFrame(label, feature)
+    val url = this.getClass.getResource("/data/doc_class.dat")
     val documentDS: RDD[String] = spark.read.textFile(url.getPath).rdd.cache()
     val title: String = documentDS.first()
 

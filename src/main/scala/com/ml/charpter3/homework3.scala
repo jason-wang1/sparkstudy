@@ -12,12 +12,25 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
 
 /**
-  * Descreption: XXXX<br/>
-  * Date: 2020年05月13日
-  *
-  * @author WangBo
-  * @version 1.0
-  */
+ * Descreption:
+ *
+ * 采用ML Pipelines构建一个文档分类器，需要将模型进行保存，并且加载模型后对测试样本进行预测，考查点：
+ * 1）	数据清洗，把样本转换为结构化的DataFrame，划分训练集与测试集
+ * 2）	构建分类器的管道Pipeline：1.分词；2.计算词频
+ * 3）	通过交叉验证CrossValidator训练模型
+ * 4)   在测试集上验证模型效果
+ *
+ * 数据集描述：
+ * myapp_id：文档id
+ * typenameid：文档类别id，即需要预测的标签
+ * typename：文档类别
+ * myapp_word：部分文档内容
+ * myapp_word_all：全部文档内容，即用于训练的特征
+ * Date: 2020年05月13日
+ *
+ * @author WangBo
+ * @version 1.0
+ */
 object homework3 {
   def main(args: Array[String]): Unit = {
     val sparkConf: SparkConf = new SparkConf().setAppName("homework").setMaster("local[*]")

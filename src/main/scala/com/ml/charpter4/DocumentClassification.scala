@@ -11,15 +11,24 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
-  * Descreption: 文本分类
-  * 标签：typenameid；特征：myapp_word_all
-  *
-  * Date: 2020年05月14日
-  *
-  * @author WangBo
-  * @version 1.0
-  */
+ * Descreption: 文本分类
+ * 特征工程：分词；word2vec
+ * 分类模型：随机森林
+ *
+ * 数据集描述：
+ * myapp_id：文档id
+ * typenameid：文档类别id，即需要预测的标签
+ * typename：文档类别
+ * myapp_word：部分文档内容
+ * myapp_word_all：全部文档内容，即用于训练的特征
+ *
+ * Date: 2020年05月14日
+ *
+ * @author WangBo
+ * @version 1.0
+ */
 object DocumentClassification {
+  val saveModelPath: String = this.getClass.getResource("/model/docclass_word2vec_rf").getPath
 
   def main(args: Array[String]): Unit = {
     // 第一次训练设置为true，它会训练模型并保存模型
@@ -35,8 +44,8 @@ object DocumentClassification {
       .randomSplit(Array(0.9, 0.1), 1)
 
     val model =
-      if (init) modelTraining(spark, trainingData)
-      else CrossValidatorModel.load("C:\\Users\\BoWANG\\IdeaProjects\\sparkstudy\\src\\main\\scala\\model\\docclass_word2vec_rf")
+      if (init) modelTraining(spark, trainingData, saveModelPath)
+      else CrossValidatorModel.load(saveModelPath)
 
     // 查看交叉验证模型选出的最佳超参数
     val param1: ParamMap = model.bestModel.asInstanceOf[PipelineModel].stages(1).extractParamMap()
@@ -51,7 +60,8 @@ object DocumentClassification {
   def readData(spark: SparkSession) = {
     import spark.implicits._
     // 读取训练数据，清洗数据
-    val documentDS: RDD[String] = spark.read.textFile("C:\\Users\\BoWANG\\IdeaProjects\\sparkstudy\\src\\main\\scala\\data\\doc_class.dat").rdd.cache()
+    val url = this.getClass.getResource("/data/doc_class.dat")
+    val documentDS: RDD[String] = spark.read.textFile(url.getPath).rdd.cache()
     val title: String = documentDS.first()
 
     val data: DataFrame = documentDS
@@ -66,7 +76,7 @@ object DocumentClassification {
     data
   }
 
-  def modelTraining(spark: SparkSession, trainingData: DataFrame) = {
+  def modelTraining(spark: SparkSession, trainingData: DataFrame, saveModelPath: String) = {
 
     // Transformer 特征转换器：分词器分词
     val tokenizer: RegexTokenizer = new RegexTokenizer()
@@ -105,7 +115,7 @@ object DocumentClassification {
     // 用训练数据训练模型，该模型会使用上面超参数的最佳组合
     val model: CrossValidatorModel = cv.fit(trainingData)
 
-    model.write.overwrite().save("C:\\Users\\BoWANG\\IdeaProjects\\sparkstudy\\src\\main\\scala\\model\\docclass_word2vec_rf")
+    model.write.overwrite().save(saveModelPath)
     model
   }
 
