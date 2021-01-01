@@ -18,7 +18,7 @@ object No03 {
     import org.apache.spark.sql.functions._
     import spark.implicits._
 
-    val frame: DataFrame = Seq(
+    val df: DataFrame = Seq(
       ("u1", "a"),
       ("u2", "b"),
       ("u2", "b"),
@@ -38,22 +38,22 @@ object No03 {
       ("u2", "a"),
       ("u2", "a"),
       ("u2", "a")
-    ).toDF("userId", "shop")
+    ).toDF("userId", "shopId")
 
     // 每个店铺的 UV（访客数）
-//    frame
+//    df
 //      .distinct()
-//      .groupBy($"userId").agg(count($"shop"))
+//      .groupBy($"userId").agg(count($"shopId"))
 //      .show()
 
     // 每个店铺top3访客信息，输出：店铺名称、访客id，访问次数
 
-    val w: WindowSpec = Window.partitionBy($"shop").orderBy($"visitCount".desc)
-    frame
-      .groupBy($"userId", $"shop").agg(count($"*").alias("visitCount"))
+    val w: WindowSpec = Window.partitionBy($"shopId").orderBy($"visitCount".desc)
+    df
+      .groupBy($"userId", $"shopId").agg(count($"*").alias("visitCount"))
       .select($"*", rank().over(w).alias("rk"))
       .where($"rk" < 4)
-      .explain()
+      .show()
 
   }
 }
