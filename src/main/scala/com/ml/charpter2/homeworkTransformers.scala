@@ -33,7 +33,8 @@ object homeworkTransformers {
     import spark.implicits._
 
     // 1.读取训练数据，清洗数据
-    val documentDS: RDD[String] = spark.read.textFile("C:\\Users\\BoWANG\\IdeaProjects\\sparkstudy\\src\\main\\scala\\data\\doc_class.dat").rdd.cache()
+    val url = this.getClass.getResource("data/doc_class.dat")
+    val documentDS: RDD[String] = spark.read.textFile(url.getPath).rdd.cache()
     val title: String = documentDS.first()
 
     val labelWords: Dataset[LabelWords] = documentDS
