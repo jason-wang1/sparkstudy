@@ -33,7 +33,7 @@ object DocumentClassification {
   def main(args: Array[String]): Unit = {
     // 第一次训练设置为true，它会训练模型并保存模型
     // 之后设置为false，它会从之前保存的地方加载模型进行预测、评估等
-    val init = true
+    val init = false
 
     val sparkConf: SparkConf = new SparkConf().setAppName("DocumentClassification").setMaster("local[*]")
     val spark: SparkSession = SparkSession.builder().config(sparkConf).getOrCreate()
@@ -48,8 +48,10 @@ object DocumentClassification {
       else CrossValidatorModel.load(saveModelPath)
 
     // 查看交叉验证模型选出的最佳超参数
+    val param0: ParamMap = model.bestModel.asInstanceOf[PipelineModel].stages(0).extractParamMap()
     val param1: ParamMap = model.bestModel.asInstanceOf[PipelineModel].stages(1).extractParamMap()
     val param2: ParamMap = model.bestModel.asInstanceOf[PipelineModel].stages(2).extractParamMap()
+    println(s"The best tokenizer param are \n$param0")
     println(s"The best word2vec param are \n$param1")
     println(s"The best rf param are \n$param2")
 

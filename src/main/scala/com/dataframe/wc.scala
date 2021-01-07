@@ -3,6 +3,7 @@ package com.dataframe
 import java.net.URL
 
 import org.apache.spark.SparkConf
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 
 case class Words(word: String, count: Int)
@@ -24,13 +25,13 @@ object wc {
     val inputUrl: URL = this.getClass.getResource("/data/test.txt")
     val df: Dataset[String] = spark.read.textFile(inputUrl.getPath)
     df.rdd
-      .flatMap(line => line.split(" "))
+      .flatMap(_.split("\\W+"))
       .map((_, 1))
       .reduceByKey(_ + _)
       .sortBy(_._2, false)
       .map { case (key, value) => Words(key, value) }
       .toDS
-      .show()
+      .show(100)
 
   }
 
