@@ -2,6 +2,7 @@ package com.ml.recommend
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.expressions.UserDefinedFunction
+import org.apache.spark.sql.types.{ArrayType, DoubleType, StringType, StructField, StructType}
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 
 /**
@@ -35,11 +36,16 @@ object JaccardSim {
       intersect.size / totleLabels.size.toDouble
     }
 
+    val takeTopK: UserDefinedFunction = udf ({itemSims: Seq[Row] =>
+      itemSims.take(2)}
+    , ArrayType(StructType(StructField("sim", DoubleType) :: StructField("itemId", StringType) :: Nil)))
+
     df.alias("t1").crossJoin(df.alias("t2"))
       .where($"t1.itemId" =!= $"t2.itemId")
       .withColumn("sim", jaccardSim($"t1.labels", $"t2.labels"))
       .groupBy($"t1.itemId")
       .agg(sort_array(collect_list(struct($"sim", $"t2.itemId")), false).alias("simItems"))
+      .withColumn("simItems", takeTopK($"simItems"))
       .show(false)
   }
 }
