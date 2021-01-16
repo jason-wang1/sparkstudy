@@ -1,20 +1,18 @@
-package com.dataframe.sqlpractice
+package com.dataframe
 
+import org.apache.spark.SparkConf
 import org.apache.spark.sql.expressions.{Window, WindowSpec}
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * Descreption: XXXX<br/>
-  * Date: 2020年06月10日
+  * 输入：schema为（学生id, 科目id, 分数）
+  * 输出：schema为（学生id）
   *
-  * @author WangBo
-  * @version 1.0
+  * 输出所有科目成绩都大于某一学科平均乘积的学生
   */
-object No01 {
+object Df01 {
   def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf().setAppName("No01").setMaster("local[3]")
-      .set("spark.sql.shuffle.partitions", "10")
+    val sparkConf = new SparkConf().setAppName("Df01").setMaster("local[3]")
     val spark = SparkSession.builder().config(sparkConf).getOrCreate()
     import org.apache.spark.sql.functions._
     import spark.implicits._
@@ -40,26 +38,5 @@ object No01 {
       .groupBy($"uid").agg(count($"uid").alias("count"))
       .where($"count" === 3)
       .show()
-
-//
-//    df.createOrReplaceTempView("student")
-//    spark
-//      .sql("select uid, subjectId from student where score > 85")
-//      .explain(true)
-//
-//    df.createOrReplaceTempView("t")
-//    spark.sql(
-//      """
-//        |select uid
-//        |from(
-//        | select uid,
-//        | case when score > avgScore then 1 else 0 end flag
-//        | from(
-//        |  select uid, score, avg(score) over(partition by subjectId) avgScore
-//        |  from t))
-//        |group by uid
-//        |having sum(flag) = 3
-//      """.stripMargin).show()
-
   }
 }
