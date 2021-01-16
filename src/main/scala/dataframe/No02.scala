@@ -1,4 +1,4 @@
-package com.dataframe.sqlpractice
+package dataframe
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.expressions.{Window, WindowSpec}
