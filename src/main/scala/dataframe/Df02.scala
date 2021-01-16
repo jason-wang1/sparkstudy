@@ -5,13 +5,10 @@ import org.apache.spark.sql.expressions.{Window, WindowSpec}
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
-  * Descreption: XXXX<br/>
-  * Date: 2020年06月10日
-  *
-  * @author WangBo
-  * @version 1.0
+  * 输入：schema为（用户id，观看日期，观看次数）
+  * 输出：schema为（用户id，观看月份，用户当月观看次数，用户历史累计观看次数）
   */
-object No02 {
+object Df02 {
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf().setAppName("No01").setMaster("local[3]")
     val spark = SparkSession.builder().config(sparkConf).getOrCreate()
