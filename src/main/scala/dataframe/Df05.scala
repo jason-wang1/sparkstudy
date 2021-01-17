@@ -2,37 +2,40 @@ package com.dataframe
 
 import java.util
 
-import org.apache.spark.sql.functions.collect_list
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.SparkConf
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
 
 import scala.collection.mutable
 
 /**
-  * Descreption: 计算二度好友
-  * Date: 2020年04月13日
+  * 输入：schema为（用户A，用户B）
+  * 输出：schema为（用户A，用户B）
   *
-  * @author WangBo
-  * @version 1.0
+  * 给一张好友表，输出二度好友表
   */
-object friend2 {
+object Df05 {
   def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf().setAppName("DfDemo").setMaster("local[3]")
-    val sc: SparkContext = new SparkContext(sparkConf)
+    val sparkConf = new SparkConf().setAppName("Df05").setMaster("local[3]")
     val spark = SparkSession.builder().config(sparkConf).getOrCreate()
     import spark.implicits._
-    val frindsDF: DataFrame = Seq[(String, String)](("a", "b"), ("a", "c"), ("a", "e"), ("b", "d"), ("e", "d"), ("c", "f"), ("f", "g"))
+    val frindsDF: DataFrame = Seq[(String, String)](
+      ("a", "b"),
+      ("a", "c"),
+      ("a", "e"),
+      ("b", "d"),
+      ("e", "d"),
+      ("c", "f"),
+      ("f", "g")
+    )
       .toDF("col1", "col2").cache()
 
-//    solve1(frindsDF, spark)
+    solveWithDF(frindsDF, spark)
 
-    solve2(frindsDF, spark)
-
+    //    solveWithRDD(frindsDF, spark)
   }
 
 
-  def solve2(frindsDF: DataFrame, spark: SparkSession): Unit = {
-    import org.apache.spark.sql.functions._
+  def solveWithDF(frindsDF: DataFrame, spark: SparkSession): Unit = {
     import spark.implicits._
     val unionFriendDF: Dataset[Row] = frindsDF
       .union(frindsDF.select($"col2", $"col1"))
@@ -46,7 +49,7 @@ object friend2 {
       .show()
   }
 
-  def solve1(frindsDF: DataFrame, spark: SparkSession) = {
+  def solveWithRDD(frindsDF: DataFrame, spark: SparkSession) = {
     import org.apache.spark.sql.functions._
     import spark.implicits._
 

@@ -15,6 +15,7 @@
 |   [Df02](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df02.scala)   |   Window / groupBy / agg   |   给一张用户每天观看次数明细表，计算当月观看总次数与历史累计观看总次数   |
 |   [Df03](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df03.scala)   |   Window / groupBy / agg   |   给一张用户点击店铺的明细，输出点击每个店铺最多的top3用户，并给出该用户点击该店铺次数以及店铺内的排名   |
 |   [Df04](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df04.scala)   |   join   |   给一张用户A关注用户B的表，输出相互关注的用户对   |
+|   [Df05](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df05.scala)   |   union / join / except   |   给一张好友表，输出二度好友表   |
 
 * GraphX
 * Ml
