@@ -8,6 +8,10 @@
 
 ## 目录
 ### 1.RDD
+| 编号   |  考点   |  题目描述   |
+| ---- | ---- | ---- |
+|   [WordCount](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/rdd/WordCount.scala)   |   flatMap / map / reduceByKey / sortBy   |   给一个RDD[String]，进行分词，word count 并倒序排序   |
+
 ### 2.DataFrame
 | 编号   |  考点   |  题目描述   |
 | ---- | ---- | ---- |
