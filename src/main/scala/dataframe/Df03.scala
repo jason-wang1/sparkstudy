@@ -1,8 +1,8 @@
 package dataframe
 
-import org.apache.spark.SparkConf
+import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.expressions.{Window, WindowSpec}
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import ulits.SparkConfig
 
 /**
   * 输入：schema为（店铺名称，访客id）
@@ -12,8 +12,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
   */
 object Df03 {
   def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf().setAppName("Df03").setMaster("local[3]")
-    val spark = SparkSession.builder().config(sparkConf).getOrCreate()
+    val spark = new SparkConfig("Df03").getSparkSession
     import org.apache.spark.sql.functions._
     import spark.implicits._
 

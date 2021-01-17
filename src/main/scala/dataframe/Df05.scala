@@ -1,9 +1,8 @@
 package com.dataframe
 
 import java.util
-
-import org.apache.spark.SparkConf
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
+import ulits.SparkConfig
 
 import scala.collection.mutable
 
@@ -15,8 +14,7 @@ import scala.collection.mutable
   */
 object Df05 {
   def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf().setAppName("Df05").setMaster("local[3]")
-    val spark = SparkSession.builder().config(sparkConf).getOrCreate()
+    val spark = new SparkConfig("Df05").getSparkSession
     import spark.implicits._
     val frindsDF: DataFrame = Seq[(String, String)](
       ("a", "b"),

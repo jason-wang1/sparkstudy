@@ -1,8 +1,8 @@
 package com.dataframe
 
-import org.apache.spark.SparkConf
+import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.expressions.{Window, WindowSpec}
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import ulits.SparkConfig
 
 /**
   * 输入：schema为（学生id, 科目id, 分数）
@@ -12,8 +12,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
   */
 object Df01 {
   def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf().setAppName("Df01").setMaster("local[3]")
-    val spark = SparkSession.builder().config(sparkConf).getOrCreate()
+    val spark = new SparkConfig("Df01").getSparkSession
     import org.apache.spark.sql.functions._
     import spark.implicits._
 
