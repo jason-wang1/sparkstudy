@@ -1,7 +1,6 @@
 package rdd
 
 import java.net.URL
-
 import org.apache.spark.sql.{Dataset, SparkSession}
 import ulits.SparkConfig
 
