@@ -1,26 +1,19 @@
-package com.dataframe
+package rdd
 
 import java.net.URL
 
-import org.apache.spark.SparkConf
-import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
+import org.apache.spark.sql.{Dataset, SparkSession}
+import ulits.SparkConfig
 
 case class Words(word: String, count: Int)
 
 /**
-  * Descreption: XXXX<br/>
-  * Date: 2020年05月13日
-  *
-  * @author WangBo
-  * @version 1.0
+  * WordCount，并降序排序
   */
-object wc {
+object WordCount {
   def main(args: Array[String]): Unit = {
-    val sparkConf: SparkConf = new SparkConf().setAppName("wc").setMaster("local[*]")
-    val spark: SparkSession = SparkSession.builder().config(sparkConf).getOrCreate()
+    val spark: SparkSession = new SparkConfig("WordCount").getSparkSession
     import spark.implicits._
-    val stopWords = Seq("a", "of", "to")
 
     val inputUrl: URL = this.getClass.getResource("/data/test.txt")
     val df: Dataset[String] = spark.read.textFile(inputUrl.getPath)
@@ -32,7 +25,5 @@ object wc {
       .map { case (key, value) => Words(key, value) }
       .toDS
       .show(100)
-
   }
-
 }

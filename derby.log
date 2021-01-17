@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sun Jul 26 10:25:31 CST 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0173-88f0-8630-00000e5a9300 
-on database directory C:\Users\BoWANG\IdeaProjects\sparkstudy\metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@5c73f672 
-Loaded from file:/C:/Users/BoWANG/.m2/repository/org/apache/derby/derby/10.10.2.0/derby-10.10.2.0.jar
+Sun Jan 17 10:50:48 CST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0177-0e40-9021-00000b1483b8 
+on database directory /Users/wangbo/IdeaProjects/sparkstudy/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@588307f7 
+Loaded from file:/Users/wangbo/.m2/repository/org/apache/derby/derby/10.10.2.0/derby-10.10.2.0.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_171-b11
-user.dir=C:\Users\BoWANG\IdeaProjects\sparkstudy
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
+java.runtime.version=1.8.0_271-b09
+user.dir=/Users/wangbo/IdeaProjects/sparkstudy
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.15.7
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

@@ -6,6 +6,7 @@ import org.apache.spark.sql.functions.when
 import org.apache.spark.sql.types._
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.{Column, DataFrame, Row, SparkSession}
+import ulits.SparkConfig
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -47,7 +48,7 @@ object dfDemo {
   }
 
   def my_function(columnName: String) : org.apache.spark.sql.Column = {
-    val spark = SparkConfig.getSparkSession
+    val spark = new SparkConfig("dfDemo").getSparkSession
     import spark.implicits._
     when(
       $"l.$columnName" === $"r.$columnName", null
@@ -55,7 +56,7 @@ object dfDemo {
   }
 
   def main(args: Array[String]): Unit = {
-    val spark = SparkConfig.getSparkSession
+    val spark =  new SparkConfig("dfDemo").getSparkSession
     import spark.implicits._
 
 //    val df1 = Seq(
