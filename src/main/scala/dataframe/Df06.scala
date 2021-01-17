@@ -1,17 +1,15 @@
-package com.dataframe.sqlpractice
+package dataframe
 
 import org.apache.spark.SparkConf
-import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
-  * Descreption: XXXX<br/>
-  * Date: 2020年06月13日
+  * 输入：schema为（时间戳，用户id，商品id）
+  * 输出：schema为（商品id，uv）
   *
-  * @author WangBo
-  * @version 1.0
+  * 给一张用户点击商品明细表，输出uv大于1的top3的商品
   */
-object No11 {
+object Df06 {
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf().setAppName("No01").setMaster("local[3]")
     val spark = SparkSession.builder().config(sparkConf).getOrCreate()
@@ -30,16 +28,11 @@ object No11 {
     ).toDF("ts", "uid", "pid")
 
 
-
-    // 求pv最大的商品
-//    df.groupBy($"pid").agg(count($"uid")).show()
-
-    // 求pv大于100的top3
-    df.groupBy($"pid").agg(count($"uid").alias("pv"))
-      .where($"pv" > 100)
-      .sort($"pv".desc)
+    // 求uv大于1的top3的商品
+    df.groupBy($"pid").agg(countDistinct($"uid").alias("uv"))
+      .where($"uv" > 1)
+      .sort($"uv".desc)
       .limit(3)
       .show()
-
   }
 }
