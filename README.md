@@ -8,12 +8,12 @@
 
 ## 目录
 ### 1.RDD
-| 编号   |  考点   |  题目描述   |
+| 编号   |  考点   |  简介   |
 | ---- | ---- | ---- |
 |   [WordCount](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/rdd/WordCount.scala)   |   flatMap / map / reduceByKey / sortBy   |   给一个RDD[String]，进行分词，word count 并倒序排序   |
 
 ### 2.DataFrame
-| 编号   |  考点   |  题目描述   |
+| 编号   |  考点   |  简介   |
 | ---- | ---- | ---- |
 |   [Df01](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df01.scala)   |   Window / groupBy / agg   |   给一张学生成绩明细表，找出所有科目成绩都大于某一学科平均乘积的学生   |
 |   [Df02](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df02.scala)   |   Window / groupBy / agg   |   给一张用户每天观看次数明细表，计算当月观看总次数与历史累计观看总次数   |
@@ -22,5 +22,9 @@
 |   [Df05](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df05.scala)   |   union / join / except   |   给一张好友表，输出二度好友表   |
 |   [Df06](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df06.scala)   |   groupBy / agg / countDistinct   |   给一张用户点击商品明细表，输出uv大于1的top3的商品   |
 
-* GraphX
-* Ml
+## GraphX
+## Ml
+| 编号   |  考点   |  简介   |
+| ---- | ---- | ---- |
+|   [DocumentClassification](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/DocumentClassification.scala)   |   Pipeline / CrossValidator / MulticlassClassificationEvaluator   |   构建多分类模型：数据集中每一条样本包含文档内容、文档标签两个字段   |
+|   [RegressionModelBuild](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/RegressionModelBuild.scala)   |   特征工程 / Pipeline   |   数据清洗+特征工程+构建回归模型。部分方法有单元测试   |

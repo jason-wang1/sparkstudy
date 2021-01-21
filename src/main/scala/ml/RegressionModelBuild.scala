@@ -8,7 +8,40 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.DoubleType
 import org.apache.spark.sql.{Column, DataFrame, SparkSession}
 
+/**
+  * 特征工程+模型训练
+  */
 object RegressionModelBuild {
+
+  def main(args: Array[String]): Unit = {
+    val sparkConf = new SparkConf().setAppName("RegressionModelBuild").setMaster("local[3]")
+    val spark = SparkSession.builder().config(sparkConf).getOrCreate()
+
+    // 读取数据
+    val basicDF = readData(spark, "/data/df_basic.csv")
+    val tradeDF = readData(spark, "/data/df_trade.csv")
+
+    // 1. 特征构造
+    val basicWithTradeDF = featureBuild(spark, tradeDF, basicDF).cache()
+
+    // 2. 统计各列的缺失值比例；缺失值填充
+    calcNullRate(spark, basicWithTradeDF).show(false)
+
+    val basicFillNullDF = fillNull(spark, basicWithTradeDF).cache()
+    basicFillNullDF.show()
+    basicFillNullDF.printSchema()
+
+    // 3. 使用回归模型计算trade_cnt(x)对trade_amt(y)的影响
+    coffBetweenCntAmt(basicFillNullDF)
+  }
+
+  /**
+    * 读取数据
+    */
+  def readData(spark: SparkSession, relativePath: String) = {
+    val basicPath = this.getClass.getResource(relativePath).getPath
+    spark.read.option("header", "true").csv(basicPath).cache()
+  }
 
   /**
     * 特征构造
@@ -22,14 +55,6 @@ object RegressionModelBuild {
 
     basicDF.join(tradeAggDF, Seq("id"), "left")
       .withColumn("age", $"age".cast(DoubleType))
-  }
-
-  /**
-    * 读取数据
-    */
-  def readData(spark: SparkSession, relativePath: String) = {
-    val basicPath = this.getClass.getResource(relativePath).getPath
-    spark.read.option("header", "true").csv(basicPath).cache()
   }
 
   /**
@@ -134,28 +159,5 @@ object RegressionModelBuild {
 
     val lrModel = model.stages(1).asInstanceOf[LogisticRegressionModel]
     println(s"Coefficients: ${lrModel.coefficientMatrix}  Intercept: ${lrModel.interceptVector}")
-  }
-
-  def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf().setAppName("RegressionModelBuild").setMaster("local[3]")
-    val spark = SparkSession.builder().config(sparkConf).getOrCreate()
-
-
-    // 读取数据
-    val basicDF = readData(spark, "/data/df_basic.csv")
-    val tradeDF = readData(spark, "/data/df_trade.csv")
-
-    // 1. 特征构造
-    val basicWithTradeDF = featureBuild(spark, tradeDF, basicDF).cache()
-
-    // 2. 统计各列的缺失值比例；缺失值填充
-    calcNullRate(spark, basicWithTradeDF).show(false)
-
-    val basicFillNullDF = fillNull(spark, basicWithTradeDF).cache()
-    basicFillNullDF.show()
-    basicFillNullDF.printSchema()
-
-    // 3. 使用回归模型计算trade_cnt(x)对trade_amt(y)的影响
-    coffBetweenCntAmt(basicFillNullDF)
   }
 }
