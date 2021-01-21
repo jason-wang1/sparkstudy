@@ -7,8 +7,7 @@ import org.apache.spark.sql.functions._
 /**
   * Descreption:
   * 最佳方案：不采用任何数据结构(哈希表，有序数组)表示物品的评分向量，
-  * 而是直接让(userId, itemId, score)评分表与自己join。
-  * 在笛卡尔积时，如果两边表的userId匹配不上，直接就删除掉，因此笛卡尔积后的表相对来说会很小
+  * 而是直接让(userId, itemId, score)评分表与自己join，条件为userId
   *
   * Date: 2020年11月23日
   *
