@@ -5,14 +5,10 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
 
 /**
-  * Descreption:
+  * 基于物品的协同过滤
+  *
   * 最佳方案：不采用任何数据结构(哈希表，有序数组)表示物品的评分向量，
   * 而是直接让(userId, itemId, score)评分表与自己join，条件为userId
-  *
-  * Date: 2020年11月23日
-  *
-  * @author WangBo
-  * @version 1.0
   */
 object ItemCF3 {
   def main(args: Array[String]): Unit = {

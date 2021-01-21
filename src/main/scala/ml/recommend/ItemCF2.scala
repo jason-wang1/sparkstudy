@@ -8,17 +8,13 @@ import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import scala.util.control.Breaks
 
 /**
-  * Descreption:
+  * 基于物品的协同过滤
+  *
   * 优化：
   * 1. 采用有序数组保存稀疏向量，笛卡尔积后的dataframe空间大约可以减半，2n^2 -> n^2
   * 2. 时间复杂度增高，需要对n个向量排序
   * 3. 实际生产中uid为长度为10几的字符串，可以使用Long重新编码表示，空间可以减少到原来的1/10
   *    并且可以减少排序的复杂度，因为数值的大小比较比字符串更快
-  *
-  * Date: 2020年11月22日
-  *
-  * @author WangBo
-  * @version 1.0
   */
 
 object ItemCF2 {

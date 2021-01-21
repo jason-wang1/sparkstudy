@@ -6,11 +6,7 @@ import org.apache.spark.sql.types.{ArrayType, DoubleType, StringType, StructFiel
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 
 /**
-  * Descreption: 计算杰卡德相似度
-  * Date: 2020年12月20日
-  *
-  * @author WangBo
-  * @version 1.0
+  * 计算杰卡德相似度
   */
 object JaccardSim {
   def main(args: Array[String]): Unit = {

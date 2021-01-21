@@ -28,3 +28,8 @@
 | ---- | ---- | ---- |
 |   [DocumentClassification](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/DocumentClassification.scala)   |   Pipeline / CrossValidator / MulticlassClassificationEvaluator   |   构建多分类模型：数据集中每一条样本包含文档内容、文档标签两个字段   |
 |   [RegressionModelBuild](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/RegressionModelBuild.scala)   |   特征工程 / Pipeline   |   数据清洗+特征工程+构建回归模型。部分方法有单元测试   |
+|   [recommend/Item2Vec](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/recommend/Item2Vec.scala)   |   Word2Vec   |   根据用户对物品对行为序列，训练出物品 embedding 向量  |
+|   [recommend/ItemCF1](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/recommend/ItemCF1.scala)   |   udf / 哈希表   |   基于物品的协同过滤：采用哈希表表示物品被评分的向量，以便做点积  |
+|   [recommend/ItemCF2](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/recommend/ItemCF2.scala)   |   udf / 有序数组   |   基于物品的协同过滤：采用有序数组表示物品被评分的向量，以便做点积  |
+|   [recommend/ItemCF3](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/recommend/ItemCF3.scala)   |   join / groupBy / agg   |   基于物品的协同过滤：不采用任何数据结构表示物品向量，直接对评分表join  |
+|   [recommend/JaccardSim](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/ml/recommend/JaccardSim.scala)   |   join / groupBy / agg   |   计算杰卡德相似度  |

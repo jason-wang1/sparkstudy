@@ -9,13 +9,10 @@ import org.apache.spark.sql.functions._
 
 case class User2ItemScore(user: String, item: String, score: Double)
 /**
-  * Descreption: 基于物品的协同过滤
-  * Date: 2020年07月17日
-  *
-  * @author WangBo
-  * @version 1.0
+  * 基于物品的协同过滤
+  * 采用哈希表表示物品被评分的向量，以便做点积
   */
-object ItemCF {
+object ItemCF1 {
   def main(args: Array[String]): Unit = {
     val sparkConf: SparkConf = new SparkConf()
       .setAppName("ItemCF")
