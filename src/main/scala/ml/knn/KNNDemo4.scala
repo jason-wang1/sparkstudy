@@ -1,9 +1,9 @@
-package com.review.teacher.KNN
+package ml.knn
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-import scala.collection.{immutable, mutable}
+import scala.collection.immutable
 import scala.math.{pow, sqrt}
 
 // spark core实现KNN
@@ -68,6 +68,3 @@ object KNNDemo4 {
     sqrt(x.zip(y).map(elem => pow(elem._1 - elem._2, 2)).sum)
   }
 }
-
-
-// 4、计算K个点中类别的分类情况（K个点中类别做wordcount）

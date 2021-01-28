@@ -1,7 +1,8 @@
-package com.review.teacher.KNN
+package ml.knn
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
+
 import scala.math.{pow, sqrt}
 
 // spark core实现KNN
