@@ -26,7 +26,7 @@ object Df07 {
       ("m02", 3, "2017/1/25"),
       ("m03", 2, "2017/1/25"),
       ("m01", 1, "2017/1/26"),
-      ("m02", 6, "2017/2/26")
+      ("m04", 6, "2017/2/26")
     ).toDF("mid", "amt", "date")
 
     df.createOrReplaceTempView("trans")
@@ -34,7 +34,7 @@ object Df07 {
     spark.sql(
       """
         |select *,
-        |sum(amt) over(partition by mid order by date rows between 2 preceding and current row) sum_2
+        |sum(amt) over(partition by mid order by date rows between 2 preceding and current row) sum_2,
         |sum(amt) over(partition by mid order by date rows between 3 preceding and current row) sum_3
         |from (
         |   select mid, date, sum(amt) amt
