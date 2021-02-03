@@ -26,7 +26,7 @@
 ## GraphX
 | 编号   |  考点   |  简介   |
 | ---- | ---- | ---- |
-|   [GraphAttributes](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/graphx/GraphAttributes.scala)   |   Graph三大属性   |   给一张用户关系图，根据其属性进行一些统计   |
+|   [GraphAttributes](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/graphx/GraphAttributes.scala)   |   vertices、edges、triplets   |   给一张用户关系图，根据其属性进行一些统计   |
 |   [LikeAnalysis](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/graphx/LikeAnalysis.scala)   |   vertices、edges、triplets、Degrees、mapVertices、subgraph、join、aggregateMessages   |   给一张用户点赞关系图，进行各类统计   |
 
 ## Ml
