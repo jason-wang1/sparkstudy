@@ -1,31 +1,32 @@
 package com.graphx
-import org.apache.spark._
 import org.apache.spark.graphx._
+import ulits.SparkConfig
 // To make some of the examples work we will also need RDD
 import org.apache.spark.rdd.RDD
 /**
-  * Descreption: XXXX<br/>
-  * Date: 2020年04月13日
+  * 输入：用户关系图，包含用户ID、用户姓名、用户职业、用户间的关系
+  * 输出：1. 职业为博士后的用户数；2. 边中源 ID 大于目标 ID 的数量；遍历用户间的关系（含职业）
   *
-  * @author WangBo
-  * @version 1.0
+  * 考察点：Graph的三大属性：vertices、edges、triplets
   */
-object GraphDemo {
+object GraphAttributes {
   def main(args: Array[String]): Unit = {
-    // Assume the SparkContext has already been constructed
-    val sparkConf = new SparkConf().setAppName("graphDemo").setMaster("local[3]")
-    val sc = new SparkContext(sparkConf)
-    // Create an RDD for the vertices
+    val sc = new SparkConfig("GraphDemo").getSparkContext
+
+    // 创建用户顶点
     val users: RDD[(VertexId, (String, String))] =
       sc.parallelize(Array((3L, ("rxin", "student")), (7L, ("jgonzal", "postdoc")),
         (5L, ("franklin", "prof")), (2L, ("istoica", "prof"))))
-    // Create an RDD for edges
+
+    // 创建用户关系的边
     val relationships: RDD[Edge[String]] =
       sc.parallelize(Array(Edge(3L, 7L, "collab"),    Edge(5L, 3L, "advisor"),
         Edge(2L, 5L, "colleague"), Edge(5L, 7L, "pi")))
-    // Define a default user in case there are relationship with missing user
+
+    // 创建默认用户节点，以防存在缺失了用户的关系
     val defaultUser = ("John Doe", "Missing")
-    // Build the initial Graph
+
+    // 创建图
     val graph: Graph[(String, String), String] = Graph(users, relationships, defaultUser)
 
     // 计算图中职业是博士后的节点数量
@@ -36,6 +37,7 @@ object GraphDemo {
     val srcLagerCount: VertexId = graph.edges.filter(e => e.srcId > e.dstId).count
     println(s"源ID大于目标ID的数量是：$srcLagerCount")
 
+    // 查看用户之间的关系
     val facts: RDD[String] =
       graph.triplets.map(triplet =>
         triplet.srcAttr._1 + " is the " + triplet.attr + " of " + triplet.dstAttr._1)
