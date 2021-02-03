@@ -1,11 +1,12 @@
 package ulits
 
-import org.apache.spark.SparkConf
+import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.SparkSession
 
 class SparkConfig(appName: String) {
   var sparkConf: SparkConf = _
   var sparkSession: SparkSession = _
+  var sparkContext: SparkContext = _
 
 
   def getSparkConf: SparkConf = {
@@ -21,5 +22,12 @@ class SparkConfig(appName: String) {
     if(sparkSession == null)
       sparkSession = SparkSession.builder().enableHiveSupport().config(getSparkConf).getOrCreate()
     sparkSession
+  }
+
+  def getSparkContext: SparkContext = {
+    if (sparkContext == null) {
+      sparkContext = getSparkSession.sparkContext
+    }
+    sparkContext
   }
 }
