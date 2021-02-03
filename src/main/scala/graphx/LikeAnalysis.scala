@@ -6,13 +6,19 @@ import org.apache.spark.graphx._
 import org.apache.spark.rdd.RDD
 
 /**
-  * Descreption: 婚恋网络多维度分析实战
-  * Date: 2020年04月15日
-  *
-  * @author WangBo
-  * @version 1.0
+  * 输入：用户关系图，包含用户ID、用户姓名、用户年龄、用户间点赞次数
+  * 输出：
+  *   1. vertices操作：年龄大于30的用户
+  *   2. edges操作：点赞数大于5对用户ID对
+  *   3. triplets操作，输出所有过点赞的用户对；输出点赞数大于5的用户对
+  *   4. Degrees操作，输出最大出度用户ID及其度数、输出最大入度用户ID及其度数、输出最大度用户ID及其度数
+  *   5. 转换操作：对每个用户年龄+10，对每个点赞数*2
+  *   6. 结构操作：输出用户年龄大于30的子图
+  *   7. Graph与VertexRDD的join操作，将每个用户的入度、出度作为用户节点的属性的一部分（图与度join）
+  *   8. 聚合操作：对每一个用户，找出对自己点过赞的年龄最大对用户
+  *   9. VertexRDD与VertexRDD的join操作，输出对自己点过赞的年龄最大对用户，如果没有被点过赞则说明没有
   */
-object SnsAnalysisGraphx {
+object LikeAnalysis {
 
   def main(args: Array[String]): Unit = {
     //屏蔽日志
@@ -58,6 +64,8 @@ object SnsAnalysisGraphx {
     println("**********************************************************")
     println("属性演示")
     println("**********************************************************")
+
+    /** 1. vertices操作：年龄大于30的用户 */
     //方法一
     println("找出图中年龄大于30的顶点方法一：")
 
@@ -72,26 +80,27 @@ object SnsAnalysisGraphx {
     graph.vertices.filter(v => v._2._2 > 30).collect.foreach(v => println(s"${v._2._1} is ${v._2._2}"))
     println
 
-    //边操作：找出图中属性大于5的边
+    /** 2. edges操作：点赞数大于5对用户ID对 */
     println("找出图中属性大于5的边：")
     graph.edges.filter(e => e.attr > 5).collect.foreach(e => println(s"${e.srcId} to ${e.dstId} att ${e.attr}"))
     println
 
 
+    /** 3. triplets操作，输出所有过点赞的用户对；输出点赞数大于5的用户对 */
     //triplets操作，((srcId, srcAttr), (dstId, dstAttr), attr)
-    println("列出所有的tripltes：")
+    println("输出所有的tripltes：")
     for (triplet <- graph.triplets.collect) {
       println(s"${triplet.srcAttr._1} likes ${triplet.dstAttr._1}")
     }
     println
 
-    println("列出边属性>5的tripltes：")
+    println("输出点赞数>5的tripltes：")
     for (triplet <- graph.triplets.filter(t => t.attr > 5).collect) {
       println(s"${triplet.srcAttr._1} likes ${triplet.dstAttr._1}")
     }
     println
 
-    //Degrees操作
+    /** 4. Degrees操作，输出最大出度用户ID及其度数、输出最大入度用户ID及其度数、输出最大度用户ID及其度数 */
     println("找出图中最大的出度、入度、度数：")
 
     def max(a: (VertexId, Int), b: (VertexId, Int)): (VertexId, Int) = {
@@ -107,12 +116,13 @@ object SnsAnalysisGraphx {
     println("**********************************************************")
     println("转换操作")
     println("**********************************************************")
+
+    /** 5. 转换操作：对每个用户年龄+10，对每个点赞数*2 */
     println("顶点的转换操作，顶点age + 10：")
     graph.mapVertices { case (id, (name, age)) => (id, (name, age + 10)) }
       .vertices.collect.foreach(v => println(s"${v._2._1} is ${v._2._2} 说明：${v._2._2._1} 分区？${v._2._2._2}"))
 
-    println
-    println("边的转换操作，边的属性*2：")
+    println("\n边的转换操作，边的属性*2：")
     graph.mapEdges(e => e.attr * 2).edges.collect.foreach(e => println(s"${e.srcId} to ${e.dstId} att ${e.attr}"))
     println
 
@@ -122,22 +132,24 @@ object SnsAnalysisGraphx {
     println("**********************************************************")
     println("结构操作")
     println("**********************************************************")
+
+    /** 6. 结构操作：输出用户年龄大于30的子图 */
     println("顶点年纪>30的子图：")
     val subGraph: Graph[(String, PartitionID), PartitionID] = graph.subgraph(vpred = (id, vd) => vd._2 > 30)
     println("子图所有顶点：")
     subGraph.vertices.collect.foreach(v => println(s"${v._2._1} is ${v._2._2}"))
 
-    println
-    println("子图所有边：")
+    println("\n子图所有边：")
     subGraph.edges.collect.foreach(e => println(s"${e.srcId} to ${e.dstId} att ${e.attr}"))
-    println
 
     //***************************************************************************************************
     //*******************************          join操作          *****************************************
     //***************************************************************************************************
     println("**********************************************************")
-    println("连接操作")
+    println("join操作")
     println("**********************************************************")
+
+    /** 7. Graph与VertexRDD的join操作，将每个用户的入度、出度作为用户节点的属性的一部分（图与度join） */
     val inDegrees: VertexRDD[Int] = graph.inDegrees
 
     // inDeg：入度，该用户被多少人关注；outDeg：出度，该用户关注了多少人
@@ -145,6 +157,7 @@ object SnsAnalysisGraphx {
 
     //创建一个新图，顶点VD的数据类型为User，并从graph做类型转换
     val initialUserGraph: Graph[User, Int] = graph.mapVertices { case (id, (name, age)) => User(name, age, 0, 0) }
+
     //新图initialUserGraph与inDegrees、outDegrees（RDD）进行连接，并修改initialUserGraph中inDeg值、outDeg值
     val userGraph: Graph[User, PartitionID] = initialUserGraph.outerJoinVertices(initialUserGraph.inDegrees) {
       case (id, u, inDegOpt) => User(u.name, u.age, inDegOpt.getOrElse(0), u.outDeg)
@@ -153,10 +166,9 @@ object SnsAnalysisGraphx {
     }
     println("连接图的属性：")
     userGraph.vertices.collect.foreach(v => println(s"${v._2.name} inDeg: ${v._2.inDeg}  outDeg: ${v._2.outDeg}"))
-    println
 
 
-    println("出度和入读相同的人员：")
+    println("\n出度和入度相同的人员：")
     userGraph.vertices.filter {
       case (id, u) => u.inDeg == u.outDeg
     }.collect.foreach {
@@ -170,7 +182,9 @@ object SnsAnalysisGraphx {
     println("**********************************************************")
     println("聚合操作")
     println("**********************************************************")
-    println("找出年纪最大的追求者：")
+
+    /** 8. 聚合操作：对每一个用户，找出对自己点过赞的年龄最大对用户 */
+    println("找出对自己点过赞的年龄最大对用户：")
     val oldestFollower: VertexRDD[(String, Int)] = graph.aggregateMessages[(String, Int)](
       // 将源顶点的属性发送给目标顶点，map过程
       triplet => {
@@ -183,6 +197,8 @@ object SnsAnalysisGraphx {
       // 得到最大追求者，reduce过程
       (a, b) => if (a._2 > b._2) a else b
     )
+
+    /** 9. VertexRDD与VertexRDD的join操作，输出对自己点过赞的年龄最大对用户，如果没有被点过赞则说明没有 */
     userGraph.vertices.leftJoin(oldestFollower) { (id, user, optOldestFollower) => {
       optOldestFollower match {
         case None => s"${user.name} does not have any followers."
