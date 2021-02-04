@@ -46,4 +46,4 @@
 ### Streaming
 | 编号   |  考点   |  简介   |
 | ---- | ---- | ---- |
-|   [TumblingWC](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/streaming/TumblingWC.scala)   |   flatMap / map / reduceByKey   |   实时消费英文文本，每隔5秒统计最近5秒内的 word count   |
+|   [SlidingWindowWC](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/streaming/SlidingWindowWC.scala)   |   flatMap / map / window / reduceByKey   |   实时消费英文文本，进行 word count，窗口大小为6秒，滑动间隔为3秒   |
