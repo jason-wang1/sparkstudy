@@ -12,10 +12,10 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <encoding>UTF-8</encoding>
-        <scala.version>2.11.8</scala.version>
-        <spark.version>2.2.0</spark.version>
+        <scala.version>2.12.8</scala.version>
+        <spark.version>2.4.3</spark.version>
         <hadoop.version>2.7.4</hadoop.version>
-        <scala.compat.version>2.11</scala.compat.version>
+        <scala.compat.version>2.12</scala.compat.version>
     </properties>
 
     <dependencies>
@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
+            <artifactId>spark-core_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
 
@@ -46,21 +46,21 @@
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
+            <artifactId>spark-sql_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-hive_2.11</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming-kafka-0-8_2.11</artifactId>
+            <artifactId>spark-hive_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.apache.spark</groupId>-->
+<!--            <artifactId>spark-streaming-kafka-0-8_${scala.compat.version}</artifactId>-->
+<!--            <version>${spark.version}</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>redis.clients</groupId>
@@ -71,12 +71,6 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>2.4.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch-spark_2.11</artifactId>
             <version>2.4.4</version>
         </dependency>
 
@@ -94,13 +88,13 @@
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming_2.11</artifactId>
+            <artifactId>spark-streaming_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+            <artifactId>spark-streaming-kafka-0-10_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
 
@@ -112,7 +106,7 @@
 
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.11</artifactId>
+            <artifactId>kafka_${scala.compat.version}</artifactId>
             <version>1.1.0</version>
         </dependency>
 
@@ -124,13 +118,13 @@
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-mllib_2.11</artifactId>
+            <artifactId>spark-mllib_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-graphx_2.11</artifactId>
+            <artifactId>spark-graphx_${scala.compat.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
 
@@ -155,8 +149,8 @@
         <!-- https://mvnrepository.com/artifact/com.github.wookietreiber/scala-chart -->
         <dependency>
             <groupId>com.github.wookietreiber</groupId>
-            <artifactId>scala-chart_2.11</artifactId>
-            <version>0.4.2</version>
+            <artifactId>scala-chart_${scala.compat.version}</artifactId>
+            <version>0.5.1</version>
         </dependency>
 
 
