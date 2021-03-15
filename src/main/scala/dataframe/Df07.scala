@@ -1,6 +1,7 @@
 package dataframe
 
-import org.apache.spark.sql.DataFrame
+import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.{DataFrame, SparkSession}
 import ulits.SparkConfig
 
 /**
@@ -10,27 +11,54 @@ import ulits.SparkConfig
   * 输出每一天每个商户在最近2天的交易总金额、最近3天的交易总金额
   */
 object Df07 {
+
   def main(args: Array[String]): Unit = {
     val spark = new SparkConfig("Df07").getSparkSession
     import spark.implicits._
 
     val df: DataFrame = Seq(
-      ("m01", 3, "2017/1/21"),
-      ("m02", 5, "2017/1/21"),
-      ("m01", 4, "2017/1/21"),
-      ("m01", 6, "2017/1/22"),
-      ("m03", 1, "2017/1/23"),
-      ("m03", 5, "2017/1/23"),
-      ("m02", 2, "2017/1/23"),
-      ("m01", 5, "2017/1/24"),
-      ("m02", 3, "2017/1/25"),
-      ("m03", 2, "2017/1/25"),
-      ("m01", 1, "2017/1/26"),
-      ("m04", 6, "2017/1/26")
-    ).toDF("mid", "amt", "date")
+      ("m01", 3, 21),
+      ("m02", 5, 21),
+      ("m01", 4, 21),
+      ("m01", 6, 22),
+      ("m03", 1, 23),
+      ("m03", 5, 23),
+      ("m02", 2, 23),
+      ("m01", 5, 24),
+      ("m02", 3, 25),
+      ("m03", 2, 25),
+      ("m01", 1, 26),
+      ("m04", 6, 26)
+    ).toDF("mid", "amt", "date").cache()
 
+//    runSql(spark, df)
+    runDsl(spark, df)
+  }
+
+  def runDsl(spark: SparkSession, df: DataFrame) = {
+    import spark.implicits._
+    import org.apache.spark.sql.functions._
+
+    val midDF = df.select($"mid").distinct()
+    val dateDF = df.select($"date").distinct()
+    val midDateDF = midDF.crossJoin(dateDF).sort($"date", $"mid")
+    midDateDF.show()
+    val midDateAmtDF = midDateDF.join(df, Seq("mid", "date"), "left")
+
+    val w = Window.partitionBy($"mid").orderBy($"date")
+
+    midDateAmtDF
+      .withColumn("sum_amt_2", sum('amt) over w.rangeBetween(-1, Window.currentRow))
+      .withColumn("sum_amt_3", sum('amt) over w.rangeBetween(-2, Window.currentRow))
+      .drop($"amt")
+      .na.drop(Seq("sum_amt_3"))
+      .sort($"date", $"mid")
+      .show(100, false)
+  }
+
+
+  def runSql(spark: SparkSession, df: DataFrame) = {
     df.createOrReplaceTempView("trans")
-
     spark.sql(
       """
         |select aaa.mid, aaa.date,
@@ -57,7 +85,6 @@ object Df07 {
         |) aaa
         |order by aaa.date, aaa.mid
         |""".stripMargin).show(100, truncate = false)
-
 
   }
 }
