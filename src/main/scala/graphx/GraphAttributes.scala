@@ -1,4 +1,5 @@
-package com.graphx
+package graphx
+
 import org.apache.spark.graphx._
 import ulits.SparkConfig
 // To make some of the examples work we will also need RDD

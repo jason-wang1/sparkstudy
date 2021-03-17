@@ -1,4 +1,4 @@
-package com.graphx
+package graphx
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkConf, SparkContext}

@@ -1,4 +1,4 @@
-package com.graphx
+package graphx
 
 import org.apache.spark.graphx._
 import org.apache.spark.graphx.util.GraphGenerators
