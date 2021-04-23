@@ -24,6 +24,7 @@
 |   [Df05](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df05.scala)   |   union / join / except   |   给一张好友表，输出二度好友表   |
 |   [Df06](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df06.scala)   |   groupBy / agg / countDistinct   |   给一张用户点击商品明细表，输出uv大于1的top3的商品   |
 |   [Df07](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df07.scala)   |   Window / join   |   给一张商户交易明细表，记录了商户每一笔交易金额，输出每一天每个商户在最近2天的交易总金额、最近3天的交易总金额   |
+|   [Df08](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/dataframe/Df08.scala)   |   Window   |   通过交易日志输出用户每天时点余额   |
 
 ### GraphX
 | 编号   |  考点   |  简介   |
