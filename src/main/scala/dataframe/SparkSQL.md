@@ -2633,7 +2633,7 @@ Analyzed Logical Plan 是可以直接转换成 Physical Plan 然后在 Spark 中
 
 Optimizer 的工作方式类似于 Analyzer，因为它们都继承自 RuleExecutor[LogicalPlan］，都是执行一系列的 Batch 操作， 生成 Optimized LogicalPlan 。
 
-![](D:\XMind\Spark\picture\Optimizer.png)
+![alt text](https://github.com/jason-wang1/sparkstudy/tree/master/src/main/resources/picture/Optimizer.png)
 
 ```scala
 abstract class Optimizer(sessionCatalog: SessionCatalog, conf: SQLConf)
