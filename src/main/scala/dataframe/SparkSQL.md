@@ -32,7 +32,7 @@ off-heap : Spark能够以二进制的形式序列化数据(不包括结构)到of
 
 ### DataFrame & RDD
 
-![](https://github.com/jason-wang1/sparkstudy/raw/master/src/main/resources/picture/picture/DataFrame & RDD.png)
+![](https://github.com/jason-wang1/sparkstudy/tree/master/src/main/resources/picture/DataFrame & RDD.png)
 
 1. 上图直观地体现了DataFrame和RDD的区别。左侧的RDD[Person]虽然以Person为类型参数，但Spark框架本身不了解Person类的内部结构。而右侧的DataFrame却提供了详细的结构信息，使得Spark SQL可以清楚地知道该数据集中包含哪些列，每列的名称和类型各是什么。DataFrame是为数据提供了Schema的视图。可以把它当做数据库中的一张表来对待，DataFrame也是懒执行的。
 2. 性能上比RDD要高，主要原因：SparkSQL的**查询优化器**会将逻辑计划进行优化，最终执行的是效率更高的物理计划
@@ -102,7 +102,7 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 ### 核心API
 
-![alt text](https://github.com/jason-wang1/sparkstudy/raw/master/src/main/resources/picture/spark sql核心API.jpg)
+![alt text](https://github.com/jason-wang1/sparkstudy/tree/master/src/main/resources/picture/spark sql核心API.jpg)
 
 
 
@@ -213,7 +213,7 @@ DataSet是一个Encoder的分布式数据集，即已序列化的结构数据
 
 创建DataSet需要一个显示的Encoder，把对象序列化成二进制
 
-![](picture\DataSet演进.jpg)
+![](https://github.com/jason-wang1/sparkstudy/tree/master/src/main/resources/picture/DataSet演进.jpg)
 
 Spark 2.2 加入了内置 `encoder`，用于支持 `Seq`,`Array`, `etc`类型。如果只使用 `case class`和常用的scala类型来创建类型，只需要引入 `sparkSession.implicits._`
 
