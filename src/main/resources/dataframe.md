@@ -32,7 +32,7 @@ off-heap : Spark能够以二进制的形式序列化数据(不包括结构)到of
 
 ### DataFrame & RDD
 
-![](./picture/DataFrame & RDD.png)
+![](./picture/DataFrame_RDD.png)
 
 1. 上图直观地体现了DataFrame和RDD的区别。左侧的RDD[Person]虽然以Person为类型参数，但Spark框架本身不了解Person类的内部结构。而右侧的DataFrame却提供了详细的结构信息，使得Spark SQL可以清楚地知道该数据集中包含哪些列，每列的名称和类型各是什么。DataFrame是为数据提供了Schema的视图。可以把它当做数据库中的一张表来对待，DataFrame也是懒执行的。
 2. 性能上比RDD要高，主要原因：SparkSQL的**查询优化器**会将逻辑计划进行优化，最终执行的是效率更高的物理计划
@@ -1869,7 +1869,7 @@ $$
 
   - Expression 是表达式体系
 
-![](picture\TreeNode子类.png)
+![](picture/TreeNode子类.png)
 
 #### LogicalPlan
 
@@ -1886,13 +1886,13 @@ $$
 3. partitioning ： 一些分区操作， 如RedistributeData
 4. ScriptTransformation ： 对脚本的处理，如ScriptTransformation
 
-![](picture\LogicalPlan总体架构.png)
+![](picture/LogicalPlan总体架构.png)
 
 
 
 ### 一条SQL的Spark之旅
 
-![](picture\spark sql 运行流程.jpg)
+![](picture/spark_sql运行流程.jpg)
 
 ```sql
 SELECT sum(v)
@@ -1923,7 +1923,7 @@ SparkSqlParser 解析阶段将SQL字符串解析成 Unresolved LogicalPlan
             +- 'UnresolvedRelation `t2`
 ```
 
-![]picture\SqlParser案例.jpg)
+![](picture/SqlParser案例.jpg)
 
 ```scala
 /** 保留尚未在目录中查找的关系的名称 */
@@ -1985,7 +1985,7 @@ Aggregate [sum(cast(v#16 as bigint)) AS sum(v)#22L]
 
 从上面的结果可以看出，t1 和 t2 表已经解析成带有 id、value、cid 以及 did 四个列的表，其中这个表的数据源来自于 csv 文件。而且每个列的位置和数据类型已经确定了，sum 被解析成 Aggregate 函数了。下面是从 Unresolved LogicalPlan 转换到 Analyzed Logical Plan 对比图。
 
-![](picture\analyzer案例.jpg)
+![](picture/analyzer案例.jpg)
 
 #### Optimizer
 
@@ -1997,19 +1997,19 @@ Analyzed Logical Plan 是可以直接转换成 Physical Plan 然后在 Spark 中
 
 这个过程主要将过滤条件尽可能地下推到底层，最好是数据源。
 
-![](picture\optimizer谓词下推.jpg)
+![](picture/optimizer谓词下推.jpg)
 
 ##### 列剪裁
 
 因为我们查询的表可能有很多个字段，但是每次查询我们很大可能不需要扫描出所有的字段，这个时候利用列裁剪可以把那些查询不需要的字段过滤掉，使得扫描的数据量减少。
 
-![](picture\optimizer列剪裁.jpg)
+![](picture/optimizer列剪裁.jpg)
 
 ##### 常量替换
 
 也就是将变量替换成常量，比如 SELECT * FROM table WHERE i = 5 AND j = i + 3 可以转换成 SELECT * FROM table WHERE i = 5 AND j = 8。
 
-![](picture\optimizer常量替换.jpg)
+![](picture/optimizer常量替换.jpg)
 
 ```sql
 == Optimized Logical Plan ==
@@ -2028,7 +2028,7 @@ Aggregate [sum(cast(v#16 as bigint)) AS sum(v)#22L]
 
 这个阶段把一些常量表达式事先计算好。
 
-![](picture\optimizer常量累加.jpg)
+![](picture/optimizer常量累加.jpg)
 
 最终 Optimized Logical Plan 如下：
 
@@ -2067,7 +2067,7 @@ Logical Plan 其实并不能被执行的，为了能够执行这个 SQL，一定
 
 从上面的结果可以看出，物理计划阶段已经知道数据源是从 csv 文件里面读取了，也知道文件的路径，数据类型等。而且在读取文件的时候，直接将过滤条件（PushedFilters）加进去了。同时，这个 Join 变成了 BroadcastHashJoin，也就是将 t2 表的数据 Broadcast 到 t1 表所在的节点。图表示如下：
 
-![](picture\SparkPlanner案例.png)
+![](picture/SparkPlanner案例.png)
 
 #### WholeStageCodegen
 
@@ -2144,7 +2144,7 @@ final class GeneratedIteratorForCodegenStage1 extends org.apache.spark.sql.execu
 
 最终生成DAG：
 
-![](picture\spark sql DAG案例.png)
+![](picture/spark sql DAG案例.png)
 
 
 
@@ -2625,7 +2625,7 @@ class Analyzer(
 
 Analyzer 中，多个性质类似的 Rule 组成一个 Batch，而多个 Batch 构成一个 batches。这些 batches 会由 RuleExecutor 执行，先按一个一个 Batch 顺序执行，然后对 Batch 里面的每个 Rule 顺序执行。每个 Batch 会执行一次（Once）或多次（FixedPoint，由`spark.sql.optimizer.maxIterations` 参数决定），执行过程如下：
 
-![](picture\analyzer batch rule.jpg)
+![](./picture/analyzer_batch_rule.jpg)
 
 #### Optimizer
 
@@ -2633,7 +2633,7 @@ Analyzed Logical Plan 是可以直接转换成 Physical Plan 然后在 Spark 中
 
 Optimizer 的工作方式类似于 Analyzer，因为它们都继承自 RuleExecutor[LogicalPlan］，都是执行一系列的 Batch 操作， 生成 Optimized LogicalPlan 。
 
-![alt text](./picture/Optimizer.png)
+![](./picture/Optimizer.png)
 
 ```scala
 abstract class Optimizer(sessionCatalog: SessionCatalog, conf: SQLConf)
