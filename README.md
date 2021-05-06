@@ -7,15 +7,15 @@
 * Spark 2.4.3
 
 ## 目录
-### RDD
+### Core
 | 编号   |  API   |  简介   |
 | ---- | ---- | ---- |
 |   [WordCount](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/rdd/WordCount.scala)   |   flatMap / map / reduceByKey / sortBy   |   给一个RDD[String]，进行分词，word count 并倒序排序   |
 |   [NumAcc](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/rdd/NumAcc.scala)   |   reduce / Spark原生累加器   |   给一个RDD[Long] / RDD[Double]，全量求和   |
 |   [UdfAcc](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/rdd/UdfAcc.scala)   |   自定义累加器   |   给一个RDD[Int]，全量求和   |
 
-### DataFrame
-[DataFrame说明文档](https://github.com/jason-wang1/sparkstudy/tree/master/src/main/resources/dataframe.md)
+### Sql
+[SparkSql说明文档](https://github.com/jason-wang1/sparkstudy/tree/master/src/main/resources/SparkSql.md)
 
 | 编号   |  API   |  简介   |
 | ---- | ---- | ---- |

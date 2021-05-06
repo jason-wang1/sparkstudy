@@ -102,7 +102,7 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 ### 核心API
 
-![alt text](./picture/spark sql核心API.jpg)
+![](./picture/spark_sql核心API.jpg)
 
 
 
@@ -2144,7 +2144,7 @@ final class GeneratedIteratorForCodegenStage1 extends org.apache.spark.sql.execu
 
 最终生成DAG：
 
-![](picture/spark sql DAG案例.png)
+![](picture/spark_sql_DAG案例.png)
 
 
 
