@@ -32,7 +32,7 @@ off-heap : Spark能够以二进制的形式序列化数据(不包括结构)到of
 
 ### 2.2 DataFrame & RDD
 
-![](./picture/DataFrame_RDD.png)
+![](picture\DataFrame_RDD.png)
 
 1. 上图直观地体现了DataFrame和RDD的区别。左侧的RDD[Person]虽然以Person为类型参数，但Spark框架本身不了解Person类的内部结构。而右侧的DataFrame却提供了详细的结构信息，使得Spark SQL可以清楚地知道该数据集中包含哪些列，每列的名称和类型各是什么。DataFrame是为数据提供了Schema的视图。可以把它当做数据库中的一张表来对待，DataFrame也是懒执行的。
 2. 性能上比RDD要高，主要原因：SparkSQL的**查询优化器**会将逻辑计划进行优化，最终执行的是效率更高的物理计划
@@ -102,7 +102,7 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 ### 3.1 核心API
 
-![](./picture/spark_sql核心API.jpg)
+![](picture/spark_sql核心API.jpg)
 
 
 
