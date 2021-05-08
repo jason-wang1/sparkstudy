@@ -15,7 +15,7 @@
 |   [UdfAcc](https://github.com/jason-wang1/sparkstudy/blob/master/src/main/scala/rdd/UdfAcc.scala)   |   自定义累加器   |   给一个RDD[Int]，全量求和   |
 
 ### Sql
-[SparkSql说明文档](https://github.com/jason-wang1/sparkstudy/tree/master/src/main/resources/SparkSql.md)
+[SparkSql说明文档](https://github.com/jason-wang1/sparkstudy/tree/master/src/main/resources/SparkSQL.md)
 
 | 编号   |  API   |  简介   |
 | ---- | ---- | ---- |
