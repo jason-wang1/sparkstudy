@@ -1,15 +1,17 @@
 # SparkSQL
 
-## 1. 定义
+[TOC]
+
+## 定义
 
 SparkSQL是Spark用来处理结构化数据的一个模块，它提供了2个编程抽象：DataFrame和DataSet
 
-### 1.1 SparkSQL & Spark Core
+### SparkSQL & Spark Core
 
 - 对于SparkCore而言，RDD看做是对数据的封装(抽象)，对数据的进行操作需要先转换成RDD，对RDD可以使用各种算子进行处理,最终对数据进行统一的操作
 - 对于SparkSQL而言，对数据进行操作的也需要进行转换，这里提供了两个新的抽象，分别是DataFrame和DataSet
 
-### 1.2 SparkSQL & Hive
+### SparkSQL & Hive
 
 - Hive是使用SQL的语法实现MapReduce
 - SparkSQL是使用SQL的语法操作SparkCore的RDD
@@ -18,9 +20,9 @@ SparkSQL只能对表进行查询操作，无法增删改
 
 
 
-## 2. SparkSQL的编程对象
+## SparkSQL的编程对象
 
-### 2.1 DataFrame 
+### DataFrame 
 
 DataFrame定义：也是一个分布式数据容器，同时还记录着表结构信息。简单地说，DataFrame 是 RDD 与 Schema 的集合
 
@@ -30,16 +32,18 @@ DataFrame属于弱类型，可以封装成row
 
 off-heap : Spark能够以二进制的形式序列化数据(不包括结构)到off-heap中, 当要操作数据时, 就直接操作off-heap内存。
 
-### 2.2 DataFrame & RDD
+### DataFrame & RDD
 
-![](picture\DataFrame_RDD.png)
+
+
+![](picture/DataFrame_RDD.png)
 
 1. 上图直观地体现了DataFrame和RDD的区别。左侧的RDD[Person]虽然以Person为类型参数，但Spark框架本身不了解Person类的内部结构。而右侧的DataFrame却提供了详细的结构信息，使得Spark SQL可以清楚地知道该数据集中包含哪些列，每列的名称和类型各是什么。DataFrame是为数据提供了Schema的视图。可以把它当做数据库中的一张表来对待，DataFrame也是懒执行的。
 2. 性能上比RDD要高，主要原因：SparkSQL的**查询优化器**会将逻辑计划进行优化，最终执行的是效率更高的物理计划
 
 
 
-### 2.3 DataSet
+### DataSet
 
 定义：是Dataframe API的一个扩展，是Spark最新的数据抽象
 
@@ -49,7 +53,7 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 样例类被用来在Dataset中定义数据的结构信息，样例类中每个属性的名称直接映射到DataSet中的字段名称。
 
-### 3.4 DataSet & DataFrame 
+### DataSet & DataFrame 
 
 1. Dataframe是Dataset的特列，DataFrame=Dataset[Row]，所以可以通过as方法将Dataframe转换为Dataset。其中，Row是一种类型，跟Car、Person这些的类型一样，所有的表结构信息我们都用Row来表示。
 2. DataSet是强类型的。比如可以有Dataset[Car]，Dataset[Person]。
@@ -71,7 +75,7 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 
 
-### 2.5 DataSet & DataFrame & RDD
+### DataSet & DataFrame & RDD
 
 共性：
 
@@ -88,7 +92,7 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 
 
-## 3. SparkSQL编程
+## SparkSQL编程
 
 首先要在 pom.xml 文件中添加相关的依赖
 
@@ -100,13 +104,13 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 </dependency>
 ```
 
-### 3.1 核心API
+### 核心API
 
 ![](picture/spark_sql核心API.jpg)
 
 
 
-### 3.2 SparkSession的创建
+### SparkSession的创建
 
 ```scala
     //第一种方式
@@ -140,9 +144,9 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 
 
-### 3.3 DataFrame
+### DataFrame
 
-#### 3.3.1 创建
+#### 创建
 
 从数据文件中创建。从sparkSession中使用read方法创建
 
@@ -153,7 +157,7 @@ csv   format   jdbc   json   load   option   options   orc   parquet   schema   
 val people = spark.read.parquet("...")
 ```
 
-#### 3.3.2 Row
+#### Row
 
 `Row`类型是DataFrame中的一行，是一个`StructType`
 
@@ -207,13 +211,13 @@ Spark sql 中所有数据类型的基本类型
 
 
 
-#### 3.3.3 Encoder
+#### Encoder
 
 DataSet是一个Encoder的分布式数据集，即已序列化的结构数据
 
 创建DataSet需要一个显示的Encoder，把对象序列化成二进制
 
-![](./picture/DataSet演进.jpg)
+![](picture/DataSet演进.jpg)
 
 Spark 2.2 加入了内置 `encoder`，用于支持 `Seq`,`Array`, `etc`类型。如果只使用 `case class`和常用的scala类型来创建类型，只需要引入 `sparkSession.implicits._`
 
@@ -373,7 +377,7 @@ root
  |    |-- element: string (containsNull = true)
 ```
 
-#### 3.3.4 Column
+#### Column
 
 Column 表示DataSet中的一列，即为这一列中每一个值被生成的表达式
 
@@ -591,7 +595,7 @@ df.orderBy($"earning".asc).show()
 
 
 
-#### 3.3.5 Functions
+#### Functions
 
 官方文档：http://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/functions.html
 
@@ -1268,7 +1272,7 @@ df.withColumn("words", splitWords($"sentence"))
 
 
 
-#### 3.3.6 RDD转换为DataFrame
+#### RDD转换为DataFrame
 
 使用 toDF 方法转换
 
@@ -1298,7 +1302,7 @@ res2: org.apache.spark.sql.DataFrame = [name: string, age: int]
 
 
 
-#### 3.3.7 DataFrame转换为RDD
+#### DataFrame转换为RDD
 
 直接 .rdd 转换
 
@@ -1307,7 +1311,7 @@ scala> val dfToRDD = df.rdd
 dfToRDD: org.apache.spark.rdd.RDD[org.apache.spark.sql.Row] = MapPartitionsRDD[19] at rdd at <console>:29
 ```
 
-### 3.4 StatFunctions
+### StatFunctions
 
 这是一个工具类，有一些用于统计的方法
 
@@ -1341,7 +1345,7 @@ println(df.stat.corr("userA", "userB"))  // -0.0574484989621426
 
 
 
-### 3.5 DataSet
+### DataSet
 
 #### 创建
 
@@ -1393,7 +1397,7 @@ scala> val dsToRDD = ds.rdd
 
 
 
-### 3.6 DataFrame与DataSet互换
+### DataFrame与DataSet互换
 
 #### DataFrame转DataSet
 
@@ -1426,9 +1430,9 @@ val df: DataFrame = ds.toDF
 
 
 
-### 3.7 DataSet API
+### DataSet API
 
-#### 3.7.1 Transaction
+#### Transaction
 
 通常，任何更改Dataset列类型或添加新列的的转换是弱类型。 当我们需要修改Dataset的schema时，我们就需要退回到Dataframe进行操作。
 
@@ -1671,7 +1675,7 @@ DataFrame中对`numerical`类型的列进行统计的函数
 
 
 
-#### 3.7.2 Action
+#### Action
 
 | 方法                                        | 含义        |
 | ------------------------------------------- | ----------- |
@@ -1679,7 +1683,7 @@ DataFrame中对`numerical`类型的列进行统计的函数
 
 
 
-### 3.8 DSL语言风格
+### DSL语言风格
 
 domain-specific-language
 
@@ -1709,7 +1713,7 @@ object SparkSQLDemo5 {
 
 
 
-### 3.9 SQL语言风格
+### SQL语言风格
 
 ```scala
 /**
@@ -1741,7 +1745,7 @@ object SparkSQLDemo6 {
 
 
 
-### 3.10 SparkSQL自定义函数
+### SparkSQL自定义函数
 
 #### UDF
 
@@ -1782,7 +1786,7 @@ spark.sql("select newname(name), name, age from person").show()
 
 
 
-### 3.11 开窗函数
+### 开窗函数
 
 ```scala
 object AverageDemo1 {
@@ -1808,11 +1812,11 @@ object AverageDemo1 {
 }
 ```
 
-## 4. 调优
+## 调优
 
 参考资料：https://spark.apache.org/docs/latest/sql-performance-tuning.html
 
-### 4.1 广播
+### 广播
 
 在小表join大表时把整个小表广播到每一个分区，相当于map端join
 
@@ -1827,9 +1831,9 @@ broadcast(spark.table("src")).join(spark.table("records"), "key").show()
 
 
 
-## 5. SQL源码分析
+## SQL源码分析
 
-### 5.1 Catalyst架构分析
+### Catalyst架构分析
 
 - Catalyst 是与Spark 解耦的一个独立库， 是一个impl-free 的执行计划的生成和优化框架。包含了parser，analyzer，optimizer，trees，rules等
 - 其他系统如果想基于 Spark 做一些类SQL 、标准SQL 甚至其他查询语言的查询，需要基于 Catalyst 提供的解析器、执行计划树结构、逻辑执行计划的处理规则体系等类体系来实现执行计划的解析、生成、优化、映射工作。
@@ -1847,7 +1851,7 @@ $$
 \end{CD}
 $$
 
-### 5.2 TreeNode
+### TreeNode
 
 - TreeNode 有QueryPlan 和Expression 两个子类继承体系。
 
@@ -1890,7 +1894,7 @@ $$
 
 
 
-### 5.3 一条SQL的Spark之旅
+### 一条SQL的Spark之旅
 
 ![](picture/spark_sql运行流程.jpg)
 
@@ -2150,7 +2154,7 @@ final class GeneratedIteratorForCodegenStage1 extends org.apache.spark.sql.execu
 
 
 
-### 5.4 Spark Sql 源码分析
+### Spark Sql 源码分析
 
 #### QueryExecution
 
@@ -2625,7 +2629,7 @@ class Analyzer(
 
 Analyzer 中，多个性质类似的 Rule 组成一个 Batch，而多个 Batch 构成一个 batches。这些 batches 会由 RuleExecutor 执行，先按一个一个 Batch 顺序执行，然后对 Batch 里面的每个 Rule 顺序执行。每个 Batch 会执行一次（Once）或多次（FixedPoint，由`spark.sql.optimizer.maxIterations` 参数决定），执行过程如下：
 
-![](./picture/analyzer_batch_rule.jpg)
+![](picture/analyzer_batch_rule.jpg)
 
 #### Optimizer
 
@@ -2633,7 +2637,7 @@ Analyzed Logical Plan 是可以直接转换成 Physical Plan 然后在 Spark 中
 
 Optimizer 的工作方式类似于 Analyzer，因为它们都继承自 RuleExecutor[LogicalPlan］，都是执行一系列的 Batch 操作， 生成 Optimized LogicalPlan 。
 
-![](./picture/Optimizer.png)
+![](picture/Optimizer.png)
 
 ```scala
 abstract class Optimizer(sessionCatalog: SessionCatalog, conf: SQLConf)
@@ -2822,9 +2826,9 @@ rdds.head.mapPartitionsWithIndex { (index, iter) =>
 
 
 
-## 6. 数据源
+## 数据源
 
-### 6.1 本地/HDFS文件
+### 1.本地/HDFS文件
 
 1. SparkSQL的默认数据源为Parquet格式
 
@@ -2859,7 +2863,7 @@ df.select("name").write.format("parquet").mode("overwrite").save("file:///root/d
 
 
 
-### 6.2 关系型数据库
+### 2.关系型数据库
 
 通过JDBC从关系型数据库中读取数据的方式创建DataFrame，通过对DataFrame一系列的计算后，还可以将数据再写回关系型数据库中。
 
@@ -2885,7 +2889,7 @@ jdbcDF.write
 
 
 
-### 6.3 hive数据仓库
+### 3.hive数据仓库
 
 使用SparkSQL操作hive。这里指的是集成外部hive，不推荐集成内部hive
 
