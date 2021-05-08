@@ -1,6 +1,93 @@
 # SparkSQL
 
-[TOC]
+# 目录
+
+- [定义](#定义) 
+  - [SparkSQL & Spark Core](#SparkSQL & Spark Core)
+  - [SparkSQL & Hive](#SparkSQL & Hive)
+- [SparkSQL的编程对象](#SparkSQL的编程对象)
+  - [DataFrame概述](#DataFrame概述)
+  - [DataFrame & RDD](#DataFrame & RDD)
+  - [DataSet概述](#DataSet概述)
+  - [DataSet & DataFrame](#DataSet & DataFrame)
+  - [DataSet & DataFrame & RDD](#DataSet & DataFrame & RDD)
+- [SparkSQL编程](#SparkSQL编程)
+  - [核心API](#核心API)
+  - [SparkSession的创建](#SparkSession的创建)
+  - [DataFrame](#DataFrame)
+    - [创建](#创建)
+    - [Row](#Row)
+      - [StructType](#StructType)
+      - [DataType](#DataType)
+    - [Encoder](#Encoder)
+      - [No Encoder found](#No Encoder found)
+      - [最简单的解决方案](#最简单的解决方案)
+    - [Column](#Column)
+      - [创建Column](#创建Column)
+      - [创建TypedColumn](#创建TypedColumn)
+      - [API](#API)
+    - [Functions](#Functions)
+      - [排序函数 sort_funcs](#排序函数 sort_funcs)
+      - [聚合函数 agg_funcs](#聚合函数 agg_funcs)
+      - [窗口函数 window_funcs](#窗口函数 window_funcs)
+      - [普通函数 normal_funcs](#普通函数 normal_funcs)
+      - [数学函数 math_funcs](#数学函数 math_funcs)
+      - [加密函数 misc_funcs](#加密函数 misc_funcs)
+      - [字符串函数 string_funcs](#字符串函数 string_funcs)
+      - [时间函数 datetime_funcs](#时间函数 datetime_funcs)
+      - [集合函数 collection_funcs](#集合函数 collection_funcs)
+      - [自定义函数 udf_funcs](#自定义函数 udf_funcs)
+    - [RDD转换为DataFrame](#RDD转换为DataFrame)
+    - [DataFrame转换为RDD](#DataFrame转换为RDD)
+  - [StatFunctions](#StatFunctions)
+  - [DataSet](#DataSet)
+    - [创建](#创建)
+    - [RDD转换为DataSet](#RDD转换为DataSet)
+    - [DataSet转换为RDD](#DataSet转换为RDD)
+  - [DataFrame与DataSet互换](#DataFrame与DataSet互换)
+    - [DataFrame转DataSet](#DataFrame转DataSet)
+    - [DataSet转换为DataFrame](#DataSet转换为DataFrame)
+  - [DataSet API](#DataSet API)
+    - [Transaction](#Transaction)
+      - [基本转换](#基本转换)
+      - [强类型转换](#强类型转换)
+      - [弱类型转换](#弱类型转换)
+    - [Action](#Action)
+  - [DSL语言风格](#DSL语言风格)
+  - [SQL语言风格](#SQL语言风格)
+  - [SparkSQL自定义函数](#SparkSQL自定义函数)
+    - [UDF](#UDF)
+    - [UDAF](#UDAF)
+  - [开窗函数](#开窗函数)
+- [调优](#调优)
+  - [广播](#广播)
+- [一条SQL的Spark之旅](#一条SQL的Spark之旅)
+  - [SqlParser](#SqlParser)
+  - [Analyzer](#Analyzer)
+  - [Optimizer](#Optimizer)
+    - [谓词下推](#谓词下推)
+    - [列剪裁](#列剪裁)
+    - [常量替换](#常量替换)
+    - [常量累加](#常量累加)
+  - [SparkPlanner](#SparkPlanner)
+  - [WholeStageCodegen](#WholeStageCodegen)
+- [Spark Sql 源码分析](#Spark Sql 源码分析)
+  - [Catalyst架构分析](#Catalyst架构分析)
+  - [Sql 执行流程简图](#Sql 执行流程简图)
+  - [TreeNode](#TreeNode)
+  - [LogicalPlan](#LogicalPlan)
+  - [QueryExecution源码](#QueryExecution源码)
+  - [SqlParser源码](#SqlParser源码)
+  - [Analyzer源码](#Analyzer源码)
+  - [Optimizer源码](#Optimizer源码)
+  - [SparkPlanner源码](#SparkPlanner源码)
+  - [WholeStageCodegen源码](#WholeStageCodegen源码)
+- [数据源](#数据源)
+  - [1.本地/HDFS文件](#1.本地/HDFS文件)
+  - [2.关系型数据库](#2.关系型数据库)
+  - [3.hive数据仓库](#3.hive数据仓库)
+
+
 
 ## 定义
 
@@ -22,7 +109,7 @@ SparkSQL只能对表进行查询操作，无法增删改
 
 ## SparkSQL的编程对象
 
-### DataFrame 
+### DataFrame概述
 
 DataFrame定义：也是一个分布式数据容器，同时还记录着表结构信息。简单地说，DataFrame 是 RDD 与 Schema 的集合
 
@@ -43,7 +130,7 @@ off-heap : Spark能够以二进制的形式序列化数据(不包括结构)到of
 
 
 
-### DataSet
+### DataSet概述
 
 定义：是Dataframe API的一个扩展，是Spark最新的数据抽象
 
@@ -1831,70 +1918,7 @@ broadcast(spark.table("src")).join(spark.table("records"), "key").show()
 
 
 
-## SQL源码分析
-
-### Catalyst架构分析
-
-- Catalyst 是与Spark 解耦的一个独立库， 是一个impl-free 的执行计划的生成和优化框架。包含了parser，analyzer，optimizer，trees，rules等
-- 其他系统如果想基于 Spark 做一些类SQL 、标准SQL 甚至其他查询语言的查询，需要基于 Catalyst 提供的解析器、执行计划树结构、逻辑执行计划的处理规则体系等类体系来实现执行计划的解析、生成、优化、映射工作。
-- 在规则方面，提供的优化规则是比较基础的（和Pig/Hive 比，没有那么丰富）。不过，一些优化规则其实是要涉及具体物理算子的，所以，部分规则需要在系统方自己制定和实现（如spark-sqI 里的SparkStrategy ）。
-
-#### Sql 执行流程简图
-
-$$
-\begin{CD}
-    sql\;string  @>{\text{SqlParser}}>> {unresolved\;logical\;plan \\ UnresolvedRelation} @>{\text{Ananyzer}}>{\text{Session Catalog}\\ \text{Rule}}> {resolved\;logical\;plan \\ Relation} \\
-        @. @. @V{\text{Optimizer}}V{\text{Rule}}V \\
-    Selected\;physical\;plan @<{\text{Cost Model}}<< physical\;plans @<{\text{SparkPlan}}<< optimized\;logical\;plan \\
-        @VV{\text{Query Execution}}V @. @. \\
-        RDDs(Stages)
-\end{CD}
-$$
-
-### TreeNode
-
-- TreeNode 有QueryPlan 和Expression 两个子类继承体系。
-
-  - QueryPlan 下面是逻辑计划和物理执行计划两个体系，LogicalPlan在Catalyst 里有详细实现，物理执行计划表示由使用方实现
-
-    - 逻辑计划 LogicalPlan 中 TreeNode 可以细分成 3 种类型的Node
-
-      - UnaryNode 一元节点，即只有一个子节点，如Limit 、Filter 操作。
-      - BinaryNode 二元节点，即有左右子节点的二叉节点，如Join 、Union 操作。
-      - LeatNode 叶子节点，没有子节点的节点， 主要用于命令类操作，如SetCommand
-
-    - 物理执行计划节点在具体系统里实现，如 spark-sqI 工程里的SparkPlan继承体系。SparkStrategies 继承了QueryPlanner[SparkPlan］，内部制定了 LeftSemiJoin 、HashJoin 、PartialAggregation 、BroadcastNestedLoopJoin、CartesianProduct 等几种策略， 每种策略接受的都是一个LogicalPlan， 生成的是Seq[SparkPlan］，每个SparkPlan 理解为具体RDD 的算子操作。
-
-      ```scala
-      abstract class SparkStrategy extends GenericStrategy[SparkPlan] {
-        override protected def planLater(plan: LogicalPlan): SparkPlan = PlanLater(plan)
-      }
-      ```
-
-  - Expression 是表达式体系
-
-![](picture/TreeNode子类.png)
-
-#### LogicalPlan
-
-维护着一套统计数据和属性数据，也提供了解析方法，同时延伸了3 种类型的LogicalPlan：
-
-1. LeafNode ：对应于trees.LeafNode 的LogicalPlan
-2. UnaryNode ： 对应于trees.UnaryNode 的LogicalPlan
-3. BinaryNode ：对应于trees.BinaryNode 的LogicalPlan
-
-对于SQL 语句解析时， 会调用和SQL 匹配的操作方法进行解析： 这些操作分4 大类，最终生成LeafNode 、UnaryNode 、BinaryNode 中的一种。
-
-1. basicOperators ： 一些数据基本操作，如Join 、Union 、F ilter、Project 、Sort
-2. commands ： 一些命令操作， 如SetCommand 、CacheCommand
-3. partitioning ： 一些分区操作， 如RedistributeData
-4. ScriptTransformation ： 对脚本的处理，如ScriptTransformation
-
-![](picture/LogicalPlan总体架构.png)
-
-
-
-### 一条SQL的Spark之旅
+## 一条SQL的Spark之旅
 
 ![](picture/spark_sql运行流程.jpg)
 
@@ -1912,7 +1936,7 @@ FROM (
 	) iteblog
 ```
 
-#### SqlParser
+### SqlParser
 
 SparkSqlParser 解析阶段将SQL字符串解析成 Unresolved LogicalPlan
 
@@ -1967,7 +1991,7 @@ case class UnresolvedAlias(
 }
 ```
 
-#### Analyzer
+### Analyzer
 
 从上图中可以看出，未解析的逻辑计划 Unresolved LogicalPlan 包含了 UnresolvedRelation 和 unresolvedalias 等对象
 
@@ -1991,25 +2015,25 @@ Aggregate [sum(cast(v#16 as bigint)) AS sum(v)#22L]
 
 ![](picture/analyzer案例.jpg)
 
-#### Optimizer
+### Optimizer
 
 Analyzed Logical Plan 是可以直接转换成 Physical Plan 然后在 Spark 中执行。但是如果直接这么弄的话，得到的 Physical Plan 很可能不是最优的，因为在实际应用中，很多低效的写法会带来执行效率的问题，Optimizer 则进一步对Analyzed Logical Plan 进行处理，得到更优的逻辑算子树。
 
 这个阶段的优化器主要是基于规则的（Rule-based Optimizer，简称 RBO），而绝大部分的规则都是启发式规则，也就是基于直观或经验而得出的规则，例如以下几种情况：
 
-##### 谓词下推
+#### 谓词下推
 
 这个过程主要将过滤条件尽可能地下推到底层，最好是数据源。
 
 ![](picture/optimizer谓词下推.jpg)
 
-##### 列剪裁
+#### 列剪裁
 
 因为我们查询的表可能有很多个字段，但是每次查询我们很大可能不需要扫描出所有的字段，这个时候利用列裁剪可以把那些查询不需要的字段过滤掉，使得扫描的数据量减少。
 
 ![](picture/optimizer列剪裁.jpg)
 
-##### 常量替换
+#### 常量替换
 
 也就是将变量替换成常量，比如 SELECT * FROM table WHERE i = 5 AND j = i + 3 可以转换成 SELECT * FROM table WHERE i = 5 AND j = 8。
 
@@ -2028,7 +2052,7 @@ Aggregate [sum(cast(v#16 as bigint)) AS sum(v)#22L]
             +- Relation[id#8,value#9,cid#10,did#11] csv
 ```
 
-##### 常量累加
+#### 常量累加
 
 这个阶段把一些常量表达式事先计算好。
 
@@ -2049,7 +2073,7 @@ Aggregate [sum(cast(v#16 as bigint)) AS sum(v)#22L]
             +- Relation[id#8,value#9,cid#10,did#11] csv
 ```
 
-#### SparkPlanner
+### SparkPlanner
 
 Logical Plan 其实并不能被执行的，为了能够执行这个 SQL，一定需要翻译成物理计划
 
@@ -2073,7 +2097,7 @@ Logical Plan 其实并不能被执行的，为了能够执行这个 SQL，一定
 
 ![](picture/SparkPlanner案例.png)
 
-#### WholeStageCodegen
+### WholeStageCodegen
 
 ```sql
 +- *(1) Project [id#8]
@@ -2152,11 +2176,70 @@ final class GeneratedIteratorForCodegenStage1 extends org.apache.spark.sql.execu
 
 
 
+## Spark Sql 源码分析
+
+### Catalyst架构分析
+
+- Catalyst 是与Spark 解耦的一个独立库， 是一个impl-free 的执行计划的生成和优化框架。包含了parser，analyzer，optimizer，trees，rules等
+- 其他系统如果想基于 Spark 做一些类SQL 、标准SQL 甚至其他查询语言的查询，需要基于 Catalyst 提供的解析器、执行计划树结构、逻辑执行计划的处理规则体系等类体系来实现执行计划的解析、生成、优化、映射工作。
+- 在规则方面，提供的优化规则是比较基础的（和Pig/Hive 比，没有那么丰富）。不过，一些优化规则其实是要涉及具体物理算子的，所以，部分规则需要在系统方自己制定和实现（如spark-sqI 里的SparkStrategy ）。
+
+### Sql 执行流程简图
+
+$$
+\begin{CD}
+    sql\;string  @>{\text{SqlParser}}>> {unresolved\;logical\;plan \\ UnresolvedRelation} @>{\text{Ananyzer}}>{\text{Session Catalog}\\ \text{Rule}}> {resolved\;logical\;plan \\ Relation} \\
+        @. @. @V{\text{Optimizer}}V{\text{Rule}}V \\
+    Selected\;physical\;plan @<{\text{Cost Model}}<< physical\;plans @<{\text{SparkPlan}}<< optimized\;logical\;plan \\
+        @VV{\text{Query Execution}}V @. @. \\
+        RDDs(Stages)
+\end{CD}
+$$
+
+### TreeNode
+
+- TreeNode 有QueryPlan 和Expression 两个子类继承体系。
+
+  - QueryPlan 下面是逻辑计划和物理执行计划两个体系，LogicalPlan在Catalyst 里有详细实现，物理执行计划表示由使用方实现
+
+    - 逻辑计划 LogicalPlan 中 TreeNode 可以细分成 3 种类型的Node
+
+      - UnaryNode 一元节点，即只有一个子节点，如Limit 、Filter 操作。
+      - BinaryNode 二元节点，即有左右子节点的二叉节点，如Join 、Union 操作。
+      - LeatNode 叶子节点，没有子节点的节点， 主要用于命令类操作，如SetCommand
+
+    - 物理执行计划节点在具体系统里实现，如 spark-sqI 工程里的SparkPlan继承体系。SparkStrategies 继承了QueryPlanner[SparkPlan］，内部制定了 LeftSemiJoin 、HashJoin 、PartialAggregation 、BroadcastNestedLoopJoin、CartesianProduct 等几种策略， 每种策略接受的都是一个LogicalPlan， 生成的是Seq[SparkPlan］，每个SparkPlan 理解为具体RDD 的算子操作。
+
+      ```scala
+      abstract class SparkStrategy extends GenericStrategy[SparkPlan] {
+        override protected def planLater(plan: LogicalPlan): SparkPlan = PlanLater(plan)
+      }
+      ```
+
+  - Expression 是表达式体系
+
+![](picture/TreeNode子类.png)
+
+### LogicalPlan
+
+维护着一套统计数据和属性数据，也提供了解析方法，同时延伸了3 种类型的LogicalPlan：
+
+1. LeafNode ：对应于trees.LeafNode 的LogicalPlan
+2. UnaryNode ： 对应于trees.UnaryNode 的LogicalPlan
+3. BinaryNode ：对应于trees.BinaryNode 的LogicalPlan
+
+对于SQL 语句解析时， 会调用和SQL 匹配的操作方法进行解析： 这些操作分4 大类，最终生成LeafNode 、UnaryNode 、BinaryNode 中的一种。
+
+1. basicOperators ： 一些数据基本操作，如Join 、Union 、F ilter、Project 、Sort
+2. commands ： 一些命令操作， 如SetCommand 、CacheCommand
+3. partitioning ： 一些分区操作， 如RedistributeData
+4. ScriptTransformation ： 对脚本的处理，如ScriptTransformation
+
+![](picture/LogicalPlan总体架构.png)
 
 
-### Spark Sql 源码分析
 
-#### QueryExecution
+### QueryExecution源码
 
 show() 是一个Action算子，触发了job的执行
 
@@ -2416,7 +2499,7 @@ class QueryExecution(val sparkSession: SparkSession, val logical: LogicalPlan) {
 
 
 
-#### SqlParser
+### SqlParser源码
 
 ```scala
 /** SparkSession.scala */
@@ -2555,7 +2638,7 @@ abstract class AbstractSqlParser extends ParserInterface with Logging {
 
 6. ParserInterface.parsePlan 会生成一个逻辑计划 Unresolved LogicalPlan
 
-#### Analyzer
+### Analyzer源码
 
 Unresolved LogicalPlan 仅仅是一种数据结构，不包含任何数据信息，比如不知道数据源、数据类型，不同的列来自于哪张表等。Analyzer 阶段会使用事先定义好的 Rule 以及 SessionCatalog 等信息对 Unresolved LogicalPlan 进行 transform。SessionCatalog 主要用于各种函数资源信息和元数据信息（数据库、数据表、数据视图、数据分区与函数等）的统一管理。
 
@@ -2631,7 +2714,7 @@ Analyzer 中，多个性质类似的 Rule 组成一个 Batch，而多个 Batch �
 
 ![](picture/analyzer_batch_rule.jpg)
 
-#### Optimizer
+### Optimizer源码
 
 Analyzed Logical Plan 是可以直接转换成 Physical Plan 然后在 Spark 中执行。但是如果直接这么弄的话，得到的 Physical Plan 很可能不是最优的，因为在实际应用中，很多低效的写法会带来执行效率的问题，Optimizer 则进一步对Analyzed Logical Plan 进行处理，得到更优的逻辑算子树。
 
@@ -2740,7 +2823,7 @@ abstract class Optimizer(sessionCatalog: SessionCatalog, conf: SQLConf)
 }
 ```
 
-#### SparkPlanner
+### SparkPlanner源码
 
 一个逻辑计划（Logical Plan）经过一系列的策略处理之后，得到多个物理计划（Physical Plans），物理计划在 Spark 是由 SparkPlan 实现的。多个物理计划再经过代价模型（Cost Model）得到选择后的物理计划（Selected Physical Plan）。核心思想是计算每个物理计划的代价，然后得到最优的物理计划。但是在目前最新版的 Spark 2.4.3，这一部分并没有实现，直接返回多个物理计划列表的第一个作为最优的物理计划：
 
@@ -2754,7 +2837,7 @@ lazy val sparkPlan: SparkPlan = {
 
 
 
-#### WholeStageCodegen
+### WholeStageCodegen源码
 
 物理计划还是不能直接交给 Spark 执行的，Spark 最后仍然会用一些 Rule 对 SparkPlan 进行处理，这个过程是 prepareForExecution 过程，在 preparations 中指定了一些规则 Rule：
 
