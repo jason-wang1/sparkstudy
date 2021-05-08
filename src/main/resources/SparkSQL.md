@@ -3,14 +3,14 @@
 # 目录
 
 - [定义](#定义) 
-  - [SparkSQL & Spark Core](#SparkSQL & Spark Core)
-  - [SparkSQL & Hive](#SparkSQL & Hive)
+  - [SparkSQL&SparkCore](#SparkSQL&SparkCore)
+  - [SparkSQL&Hive](#SparkSQL&Hive)
 - [SparkSQL的编程对象](#SparkSQL的编程对象)
   - [DataFrame概述](#DataFrame概述)
-  - [DataFrame & RDD](#DataFrame & RDD)
+  - [DataFrame&RDD](#DataFrame&RDD)
   - [DataSet概述](#DataSet概述)
-  - [DataSet & DataFrame](#DataSet & DataFrame)
-  - [DataSet & DataFrame & RDD](#DataSet & DataFrame & RDD)
+  - [DataSet&DataFrame](#DataSet&DataFrame)
+  - [DataSet&DataFrame&RDD](#DataSet&DataFrame&RDD)
 - [SparkSQL编程](#SparkSQL编程)
   - [核心API](#核心API)
   - [SparkSession的创建](#SparkSession的创建)
@@ -20,23 +20,23 @@
       - [StructType](#StructType)
       - [DataType](#DataType)
     - [Encoder](#Encoder)
-      - [No Encoder found](#No Encoder found)
+      - [NoEncoderfound](#NoEncoderfound)
       - [最简单的解决方案](#最简单的解决方案)
     - [Column](#Column)
       - [创建Column](#创建Column)
       - [创建TypedColumn](#创建TypedColumn)
       - [API](#API)
     - [Functions](#Functions)
-      - [排序函数 sort_funcs](#排序函数 sort_funcs)
-      - [聚合函数 agg_funcs](#聚合函数 agg_funcs)
-      - [窗口函数 window_funcs](#窗口函数 window_funcs)
-      - [普通函数 normal_funcs](#普通函数 normal_funcs)
-      - [数学函数 math_funcs](#数学函数 math_funcs)
-      - [加密函数 misc_funcs](#加密函数 misc_funcs)
-      - [字符串函数 string_funcs](#字符串函数 string_funcs)
-      - [时间函数 datetime_funcs](#时间函数 datetime_funcs)
-      - [集合函数 collection_funcs](#集合函数 collection_funcs)
-      - [自定义函数 udf_funcs](#自定义函数 udf_funcs)
+      - [排序函数sort_funcs](#排序函数sort_funcs)
+      - [聚合函数agg_funcs](#聚合函数agg_funcs)
+      - [窗口函数window_funcs](#窗口函数window_funcs)
+      - [普通函数normal_funcs](#普通函数normal_funcs)
+      - [数学函数math_funcs](#数学函数math_funcs)
+      - [加密函数misc_funcs](#加密函数misc_funcs)
+      - [字符串函数string_funcs](#字符串函数string_funcs)
+      - [时间函数datetime_funcs](#时间函数datetime_funcs)
+      - [集合函数collection_funcs](#集合函数collection_funcs)
+      - [自定义函数udf_funcs](#自定义函数udf_funcs)
     - [RDD转换为DataFrame](#RDD转换为DataFrame)
     - [DataFrame转换为RDD](#DataFrame转换为RDD)
   - [StatFunctions](#StatFunctions)
@@ -47,7 +47,7 @@
   - [DataFrame与DataSet互换](#DataFrame与DataSet互换)
     - [DataFrame转DataSet](#DataFrame转DataSet)
     - [DataSet转换为DataFrame](#DataSet转换为DataFrame)
-  - [DataSet API](#DataSet API)
+  - [DataSetAPI](#DataSetAPI)
     - [Transaction](#Transaction)
       - [基本转换](#基本转换)
       - [强类型转换](#强类型转换)
@@ -71,9 +71,9 @@
     - [常量累加](#常量累加)
   - [SparkPlanner](#SparkPlanner)
   - [WholeStageCodegen](#WholeStageCodegen)
-- [Spark Sql 源码分析](#Spark Sql 源码分析)
+- [SparkSql源码分析](#SparkSql源码分析)
   - [Catalyst架构分析](#Catalyst架构分析)
-  - [Sql 执行流程简图](#Sql 执行流程简图)
+  - [Sql执行流程简图](#Sql执行流程简图)
   - [TreeNode](#TreeNode)
   - [LogicalPlan](#LogicalPlan)
   - [QueryExecution源码](#QueryExecution源码)
@@ -93,12 +93,12 @@
 
 SparkSQL是Spark用来处理结构化数据的一个模块，它提供了2个编程抽象：DataFrame和DataSet
 
-### SparkSQL & Spark Core
+### SparkSQL&SparkCore
 
 - 对于SparkCore而言，RDD看做是对数据的封装(抽象)，对数据的进行操作需要先转换成RDD，对RDD可以使用各种算子进行处理,最终对数据进行统一的操作
 - 对于SparkSQL而言，对数据进行操作的也需要进行转换，这里提供了两个新的抽象，分别是DataFrame和DataSet
 
-### SparkSQL & Hive
+### SparkSQL&Hive
 
 - Hive是使用SQL的语法实现MapReduce
 - SparkSQL是使用SQL的语法操作SparkCore的RDD
@@ -119,7 +119,7 @@ DataFrame属于弱类型，可以封装成row
 
 off-heap : Spark能够以二进制的形式序列化数据(不包括结构)到off-heap中, 当要操作数据时, 就直接操作off-heap内存。
 
-### DataFrame & RDD
+### DataFrame&RDD
 
 
 
@@ -140,7 +140,7 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 样例类被用来在Dataset中定义数据的结构信息，样例类中每个属性的名称直接映射到DataSet中的字段名称。
 
-### DataSet & DataFrame 
+### DataSet&DataFrame 
 
 1. Dataframe是Dataset的特列，DataFrame=Dataset[Row]，所以可以通过as方法将Dataframe转换为Dataset。其中，Row是一种类型，跟Car、Person这些的类型一样，所有的表结构信息我们都用Row来表示。
 2. DataSet是强类型的。比如可以有Dataset[Car]，Dataset[Person]。
@@ -162,7 +162,7 @@ DataFrame每一个行对应了一个Row。而Dataset的定义更加宽松，每�
 
 
 
-### DataSet & DataFrame & RDD
+### DataSet&DataFrame&RDD
 
 共性：
 
@@ -336,7 +336,7 @@ import sparkSession.implicits._
 val dataset = sparkSession.createDataset(dataList)(Encoders.product[SimpleTuple])
 ```
 
-##### No Encoder found
+##### NoEncoderfound
 
 但是`SparkSession`的`implicits`对常规的类没有编码器可用：
 
@@ -688,7 +688,7 @@ df.orderBy($"earning".asc).show()
 
 spark sql 内置函数
 
-##### 排序函数 sort_funcs
+##### 排序函数sort_funcs
 
 ```scala
 // 使用场景：排序
@@ -700,7 +700,7 @@ df.orderBy(asc("columnName"))
 | asc(columnName: String): Column  | 升序排序 |
 | desc(columnName: String): Column | 降序排序 |
 
-##### 聚合函数 agg_funcs
+##### 聚合函数agg_funcs
 
 ```scala
 // 使用场景1，聚合: df.groupBy().agg(聚合函数)
@@ -789,7 +789,7 @@ df.select(
 
 ```
 
-##### 窗口函数 window_funcs
+##### 窗口函数window_funcs
 
 | 函数                                          | 含义                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
@@ -884,7 +884,7 @@ df.withColumn("sum", sum('id) over byCategoryOrderedById2).orderBy($"category", 
 
 
 
-##### 普通函数 normal_funcs
+##### 普通函数normal_funcs
 
 | 函数                                        | 含义                                                         |
 | ------------------------------------------- | ------------------------------------------------------------ |
@@ -918,7 +918,7 @@ df.groupBy(expr("length(word)")).count() //word为该df的列名
 df.groupBy(length($"word")).count() //与上面表达式等价
 ```
 
-##### 数学函数 math_funcs
+##### 数学函数math_funcs
 
 | 函数                                                  | 含义                                          |
 | ----------------------------------------------------- | --------------------------------------------- |
@@ -960,7 +960,7 @@ df.groupBy(length($"word")).count() //与上面表达式等价
 | degrees(e: Column): Column                            | 把弧度为单位的角度转换成已角度位单位的角度    |
 | radians(e: Column): Column                            | 把角度为单位的角度转换成以弧度为单位的角度    |
 
-##### 加密函数 misc_funcs
+##### 加密函数misc_funcs
 
 | 函数                                  | 含义                                           |
 | ------------------------------------- | ---------------------------------------------- |
@@ -970,7 +970,7 @@ df.groupBy(length($"word")).count() //与上面表达式等价
 | crc32(e: Column): Column              | 返回循环冗余校验码，用于检验数据是否完整       |
 | hash(cols: Column*): Column           | 返回hash值                                     |
 
-##### 字符串函数 string_funcs
+##### 字符串函数string_funcs
 
 | 函数                                                         | 含义                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -1065,7 +1065,7 @@ spark.sql("select translate('www.apache.org', '.', ':')").show()
 +-------------------------------+
 ```
 
-##### 时间函数 datetime_funcs
+##### 时间函数datetime_funcs
 
 | 函数                                                         | 含义                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -1189,7 +1189,7 @@ val df: DataFrame = Seq[(String, String, Double)](
 
 ```
 
-##### 集合函数 collection_funcs
+##### 集合函数collection_funcs
 
 | 函数                                                     | 含义                                                         |
 | -------------------------------------------------------- | ------------------------------------------------------------ |
@@ -1329,7 +1329,7 @@ df.select(to_json(struct($"*"))).show(false)
 +----------------------------------------------------------------+
 ```
 
-##### 自定义函数 udf_funcs
+##### 自定义函数udf_funcs
 
 | 函数                                                         | 含义       |
 | ------------------------------------------------------------ | ---------- |
@@ -2176,7 +2176,7 @@ final class GeneratedIteratorForCodegenStage1 extends org.apache.spark.sql.execu
 
 
 
-## Spark Sql 源码分析
+## SparkSql源码分析
 
 ### Catalyst架构分析
 
@@ -2184,7 +2184,7 @@ final class GeneratedIteratorForCodegenStage1 extends org.apache.spark.sql.execu
 - 其他系统如果想基于 Spark 做一些类SQL 、标准SQL 甚至其他查询语言的查询，需要基于 Catalyst 提供的解析器、执行计划树结构、逻辑执行计划的处理规则体系等类体系来实现执行计划的解析、生成、优化、映射工作。
 - 在规则方面，提供的优化规则是比较基础的（和Pig/Hive 比，没有那么丰富）。不过，一些优化规则其实是要涉及具体物理算子的，所以，部分规则需要在系统方自己制定和实现（如spark-sqI 里的SparkStrategy ）。
 
-### Sql 执行流程简图
+### Sql执行流程简图
 
 $$
 \begin{CD}
