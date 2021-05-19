@@ -1,4 +1,4 @@
-package com.ml.recommend
+package ml.recommend
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.expressions.UserDefinedFunction
