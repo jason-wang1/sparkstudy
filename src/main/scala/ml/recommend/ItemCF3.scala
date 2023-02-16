@@ -55,9 +55,13 @@ object ItemCF3 {
     item2itemDF.show(false)
 
     val itemSimDF: DataFrame = item2itemDF
-      .join(itemLenDF.alias("item1"), $"itemId1" === $"item1.itemId")
-      .join(itemLenDF.alias("item2"), $"itemId2" === $"item2.itemId")
-      .withColumn("cosSim", $"dot" / ($"item1.vecLen" * $"item2.vecLen"))
+      .join(itemLenDF.selectExpr("itemId as itemId1", "vecLen as vecLen1"), Seq("itemId1"), "inner")
+      .join(itemLenDF.selectExpr("itemId as itemId2", "vecLen as vecLen2"), Seq("itemId2"), "inner")
+      .withColumn("cosSim", $"dot" / ($"vecLen1" * $"vecLen2"))
     itemSimDF.show(false)
+
+    val itemCfRecDf: DataFrame = df.join(itemSimDF, $"itemId" === $"itemId1", "inner")
+      .groupBy("userId", "itemId2").agg(sum($"cosSim" * $"score").alias("item_cf_score"))
+    itemCfRecDf.show()
   }
 }

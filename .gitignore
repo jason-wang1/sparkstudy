@@ -2,3 +2,4 @@
 target/
 sparkstudy.iml
 *.log
+metastore_db/
