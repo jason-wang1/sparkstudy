@@ -1,4 +1,4 @@
-package com.ml
+package ml
 
 import org.apache.spark.SparkConf
 import org.apache.spark.ml.{Pipeline, PipelineModel}

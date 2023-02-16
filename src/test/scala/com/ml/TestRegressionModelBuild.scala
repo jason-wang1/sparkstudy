@@ -1,5 +1,6 @@
 package com.ml
 
+import ml.RegressionModelBuild
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.junit.{Assert, Before, Test}
